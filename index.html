@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Camp Swatara Hiking Trails Map</title>
+        <meta name="description" content="Map of hiking trails at Camp Swatara">
+        <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+        <!--<link rel="apple-touch-icon" href="apple-touch-icon.png">-->
+        <!-- Place favicon.ico in the root directory -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+        <!-- Leaflet -->
+        <link rel="stylesheet" href="//unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+        <!-- Leaflet Zoom Home -->
+        <link rel="stylesheet" href="assets/js/leaflet.zoomhome/leaflet.zoomhome.css" />
+        <!-- Custom App Styles -->
+        <link rel="stylesheet" href="assets/css/style.css" />        
+        <!-- Font Awesome -->
+        <script src="//use.fontawesome.com/fb6bc9cb24.js"></script>
+    </head>
+    <body>
+        <!--[if lt IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <nav class="navbar navbar-default navbar-fixed-top">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="#">Camp Swatara Hiking Trails Map</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+              <ul id="navList" class="nav navbar-nav">
+                <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+              </ul>              
+             </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+        </nav> <!-- /. nav -->
+        <div id="map"></div> <!-- map container -->
+        <!-- Modals -->
+        <!-- About Modal -->
+        <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="aboutModalLabel">About the Map</h4>
+              </div>
+              <div class="modal-body">
+                <p>This is a concept for a web map of the hiking trails at Camp Swatara.</p>
+                <p>I envision the web map being embedded on a page on Camp Swatara's website.</p>
+                <p>We would need to figure out how to integrate the files for the web map with the website platform.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- ./ About Modal -->
+        <!-- /. Modals -->              
+        
+        <!-- jQuery -->
+        <script src="//code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+        <!-- Bootstrap -->
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <!-- Leaflet -->
+        <script src="////unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+        <!-- Leaflet Zoom Home -->
+        <script src="assets/js/leaflet.zoomhome/leaflet.zoomhome.min.js"></script>
+        <!-- Map Functions Module -->
+        <script src="assets/js/mapFunctions.js"></script>
+        <!-- Map App -->
+        <script src="assets/js/map.js"></script>
+    </body>
+</html>
