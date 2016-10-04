@@ -10,12 +10,12 @@ var windowHeight = window.innerHeight || document.documentElement.clientHeight |
 var windowArea = windowWidth * windowHeight;
 // Map & Controls
 var map;
-var homeCoords = [40.503582, -76.355793];
-var initZoom = setInitialMapZoom(windowWidth);
+var homeCoords = [40.50181, -76.35811];
+var initZoom = 15; //setInitialMapZoom(windowWidth);
 var zoomHomeControl;
 // Layers
 var hikingTrails;
-var imageryBasemap;
+var naip;
 
 /*********************
 *** Map & Controls ***
@@ -25,7 +25,8 @@ var imageryBasemap;
 map = L.map('map', {
    center: homeCoords,
    zoom: initZoom,
-   zoomControl: false
+   zoomControl: false,
+   maxZoom: 17
 });
 
 // Zoom Home Control
@@ -37,3 +38,14 @@ zoomHomeControl = L.Control.zoomHome({
 }).addTo(map);
 
 // Layers
+// USDA NAIP Imagery
+naip = L.tileLayer.wms('//gis.apfo.usda.gov/arcgis/services/NAIP/Pennsylvania_2015_1m/ImageServer/WMSServer', {
+    layers: '0',
+    format: 'image/png24',
+    version: '1.3.0',
+    detectRetina: true,
+    attribution: 'USDA'
+}).addTo(map);
+
+// Hiking Trails
+hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson').addTo(map);
