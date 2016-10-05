@@ -1,11 +1,8 @@
 "use strict";
 
 // Reduce number of decimals for trail lenght in pop-up
-// Need to figure out how to deal with values less then 1 miles
-// 1.952153e-001 type of value
-
 function reduceDecimalsTrailLength(data) {
-    var trailLengthReducedDecimals = data.toFixed(2);
+    var trailLengthReducedDecimals = data.toFixed(2); 
     return trailLengthReducedDecimals;
 }
 

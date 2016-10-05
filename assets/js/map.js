@@ -15,7 +15,11 @@ var initZoom = 15; //setInitialMapZoom(windowWidth);
 var zoomHomeControl;
 // Layers
 var hikingTrails;
+// Basemaps
 var naip;
+var mapboxHikeBike;
+var mapboxOutdoors;
+var mapboxKey;
 
 /*********************
 *** Map & Controls ***
@@ -66,13 +70,16 @@ hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
 
 // Add popup to Hiking Trails
 hikingTrails.bindPopup(function(evt) {
-    //var trailLength = reduceDecimalsTrailLength(evt.feature.properties.Miles);
+    var trailLength = reduceDecimalsTrailLength(evt.feature.properties.Miles);
     
     var popupContent = '<div class="feat-popup">';
     popupContent += '<h3>{Name}</h3><hr />';
-    //popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>' + trailLength +'</strong>-miles long.</p>';
-    popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>{Miles}</strong>-miles long.</p>';
+    popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>' + trailLength +'</strong>-miles long.</p>';
     popupContent += '</div>';
     
     return L.Util.template(popupContent, evt.feature.properties);    
 });
+
+// Add tooltip to Hiking Trails
+
+// Basemap Selector Code
