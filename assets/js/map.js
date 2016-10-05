@@ -48,4 +48,31 @@ naip = L.tileLayer.wms('//gis.apfo.usda.gov/arcgis/services/NAIP/Pennsylvania_20
 }).addTo(map);
 
 // Hiking Trails
-hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson').addTo(map);
+hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
+    style: function(geoJsonFeature) {
+        var lineWeight = 3;
+        var dashArrayType = '5, 5';
+        var lineColor;
+        
+        // switch statement for color
+        
+        return {
+            color: '#f00',
+            weight: lineWeight,
+            dashArray: dashArrayType
+        }
+    }
+}).addTo(map);
+
+// Add popup to Hiking Trails
+hikingTrails.bindPopup(function(evt) {
+    //var trailLength = reduceDecimalsTrailLength(evt.feature.properties.Miles);
+    
+    var popupContent = '<div class="feat-popup">';
+    popupContent += '<h3>{Name}</h3><hr />';
+    //popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>' + trailLength +'</strong>-miles long.</p>';
+    popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>{Miles}</strong>-miles long.</p>';
+    popupContent += '</div>';
+    
+    return L.Util.template(popupContent, evt.feature.properties);    
+});
