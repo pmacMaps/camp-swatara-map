@@ -1,4 +1,14 @@
 "use strict";
+
+// Reduce number of decimals for trail lenght in pop-up
+// Need to figure out how to deal with values less then 1 miles
+// 1.952153e-001 type of value
+
+function reduceDecimalsTrailLength(data) {
+    var trailLengthReducedDecimals = data.toFixed(2);
+    return trailLengthReducedDecimals;
+}
+
 // Set the initial map zoom level based upon viewport width
 function setInitialMapZoom(windowWidth) {
     var mapZoom;    
@@ -44,19 +54,3 @@ function selectLayerControlCollapsed(windowWidth) {
     }
     return isCollapsed;
 }
-
-
-/**********************
-*** Event Listeners ***
-***********************/
-
-$(document).ready(function() {
-    // Attach search control for desktop or mobile
-    function attachSearch() {
-        var parentName = $(".geocoder-control").parent().attr("id");
-        var geocoder = $(".geocoder-control");
-        $("#geocode").append(geocoder);
-    }   
-    
-    attachSearch();    
-});
