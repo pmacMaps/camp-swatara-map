@@ -41,33 +41,26 @@ li {
     background-color: #FFFF00;
 }
 
-/*** Geocode Control ***/
-.geocoder-control-expanded, 
-.leaflet-touch .geocoder-control-expanded {
-    margin-top: 4px;
-}
-
 /*** Leaflet Controls ***/
 .leaflet-control-locate a {
     color: #000;
+}
+
+/*** Layer Tooltip ***/
+.feat-tooltip {
+    font-weight: bold;
 }
 
 /*** Layer Popup ***/
 .feat-popup {
     font-size: 1.1em;
     font-family: Tahoma, Verdana, Segoe, sans-serif;
-    }
+}
 
-.feat-popup h2 {
-    font-size: 1.4em;
+.feat-popup h3 {
+    font-size: 1.25em;
     text-align: center;
 }
-
-.feat-popup h4 {
-    font-size: 1.15em;
-    margin: 15px 0;
-}
-
 
 /*** Media Query ***/
 /* 314px */
@@ -87,40 +80,4 @@ li {
     .navbar-default .navbar-toggle:active {
         background-color: #FFFF00;
     }
-    
-    #geocodeForm {
-        min-height: 100px;
-    }
-    
-    #geocodeForm h5 {
-        margin-left: 15px;
-        color: #fff;        
-    }
-    
-    #mobileGeocodeContainer {
-        min-height: 200px;
-    }
-    
-    div.geocoder-control-suggestions.leaflet-bar {
-        max-height: 200px;
-    }
-    
-    #mobileGeocodeContainer h5 {
-        color: #ddd;
-        padding-left: 15px;
-        font-weight: bold;
-        font-size: 1.1em;
-    }
-    
-    .geocoder-control .geocoder-control-expanded .leaflet-control {
-        z-index: 2000;
-    }
-    
-    .geocoder-control-expanded, 
-    .leaflet-touch .geocoder-control-expanded {
-        margin: 10px 0;
-        left: 15px;
-        width: 75%;
-        min-width: 275px;
-    }    
 }
