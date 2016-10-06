@@ -19,7 +19,7 @@ var hikingTrails;
 var naip;
 var mapboxHikeBike;
 var mapboxOutdoors;
-var mapboxKey;
+var mapboxKey = 'pk.eyJ1IjoicG1ja2lubmV5IiwiYSI6ImNpa3NpNTlyNDBlcG51cm0xcG9kd3Z2ZGoifQ.9mtNv6FNVl8c1bd7Kqud_Q';
 
 /*********************
 *** Map & Controls ***
@@ -42,6 +42,22 @@ zoomHomeControl = L.Control.zoomHome({
 }).addTo(map);
 
 // Layers
+// Mapbox Hike Bike
+mapboxOutdoors = L.tileLayer('http://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
+	subdomains: 'abcd',
+	id: 'mapbox.outdoors',
+	accessToken: mapboxKey
+}).addTo(map);
+
+// Mapbox Hike Bike
+mapboxHikeBike = L.tileLayer('http://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
+	subdomains: 'abcd',
+	id: 'mapbox.run-hike-bike',
+	accessToken: mapboxKey
+});
+
 // USDA NAIP Imagery
 naip = L.tileLayer.wms('//gis.apfo.usda.gov/arcgis/services/NAIP/Pennsylvania_2015_1m/ImageServer/WMSServer', {
     layers: '0',
@@ -49,23 +65,72 @@ naip = L.tileLayer.wms('//gis.apfo.usda.gov/arcgis/services/NAIP/Pennsylvania_20
     version: '1.3.0',
     detectRetina: true,
     attribution: 'USDA'
-}).addTo(map);
+});
 
 // Hiking Trails
 hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
-    style: function(geoJsonFeature) {
+    style: function(feature) {
         var lineWeight = 3;
         var dashArrayType = '5, 5';
         var lineColor;
-        
-        // switch statement for color
+         
+        // custom color for each trail
+        switch(feature.properties.Name) {           
+            case 'Boundary Trail':
+                lineColor = 'rgb(78,78,78)';
+                break;
+            case "Cat's Eye Trail":
+                lineColor = 'rgb(255,85,0)';
+                break;
+            case 'Cathedral Trail':
+                lineColor = 'rgb(0,92,230)';
+                break;
+            case 'Charcoal Trail':
+                lineColor = 'rgb(230,0,0)';
+                break;
+            case 'Creek Trail':
+                lineColor = 'rgb(197,0,255)';
+                break;
+            case 'Frog Pond Trail':
+                lineColor = 'rgb(230,115,0)';
+                break;
+            case 'Grapevine Trail':
+                lineColor = 'rgb(169,0,230)';
+                break;
+            case 'Ground Hog Trail':
+                lineColor = 'rgb(242,242,61)';
+                break;
+            case 'Hemlock Trail':
+                lineColor = 'rgb(56,168,0)';
+                break;
+            case 'Mountain Side Trail':
+                lineColor = 'rgb(0,255,197)';
+                break;
+            case 'Nature Trail':
+                lineColor = 'rgb(255,255,0)';
+                break;
+            case 'Pool Trail':
+                lineColor = 'rgb(255,255,115)';
+                break;
+            case 'Power Line Trail':
+                lineColor = 'rgb(76,230,0)';
+                break;
+            case 'Rock Pile Trail':
+                lineColor = 'rgb(0,92,230)';
+                break;
+            case 'Tree House Trail':
+                lineColor = 'rgb(255,170,255)';
+                break;
+            default:
+                lineColor = '#fff';           
+        }
         
         return {
-            color: '#f00',
+            color: lineColor,
             weight: lineWeight,
             dashArray: dashArrayType
-        }
-    }
+        }   
+     }
 }).addTo(map);
 
 // Add popup to Hiking Trails
