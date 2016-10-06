@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // Reduce number of decimals for trail lenght in pop-up
 function reduceDecimalsTrailLength(data) {
@@ -7,6 +7,7 @@ function reduceDecimalsTrailLength(data) {
 }
 
 // Set the initial map zoom level based upon viewport width
+// Needs updated
 function setInitialMapZoom(windowWidth) {
     var mapZoom;    
     if (windowWidth < 500) {
@@ -20,6 +21,7 @@ function setInitialMapZoom(windowWidth) {
 }
 
 // Set max height of pop-up window 
+// Needs updated and tied to pop-ups
 function setPopupMaxHeight(windowArea) {
     var maxHeight;
     if (windowArea < 315000) {
@@ -31,6 +33,7 @@ function setPopupMaxHeight(windowArea) {
 }
 
 // Set max width of pop-up window 
+// Needs updated and tied to pop-ups
 function setPopupMaxWidth(windowWidth) {
     var maxWidth;
     if (windowWidth < 450) {
@@ -38,21 +41,11 @@ function setPopupMaxWidth(windowWidth) {
     } else {
         maxWidth = 300;
     }
-    return maxWidth;
+        return maxWidth;
 }
 
-// Determines if basemap selector is expanded or collapsed
-function selectLayerControlCollapsed(windowWidth) {
-    var isCollapsed;
-    if (windowWidth < 768) {
-        isCollapsed = true;
-    } else {
-        isCollapsed = false;
-    }
-    return isCollapsed;
-}
-
-// Change Basemaps Event Listener
+// Add event listener to change event for basemaps select element
+// Run function to change basemap
 $("#basemapsSelector").on("change", function(e) {
     setBasemap($(this).val());
 });

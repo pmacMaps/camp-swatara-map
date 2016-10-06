@@ -27,7 +27,7 @@
           <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNav" aria-expanded="false">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -36,8 +36,8 @@
               <a class="navbar-brand" href="#">Camp Swatara Hiking Trails Map</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse">
-              <ul id="navList" class="nav navbar-nav">
+            <div id="mainNav" class="collapse navbar-collapse">
+              <ul class="nav navbar-nav">
                 <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#basemapModal">Select Basemap</a></li>
               </ul>              
@@ -57,8 +57,15 @@
               <div class="modal-body">
                 <p>This is a concept for a web map of the hiking trails at Camp Swatara.</p>
                 <p>I envision the web map being embedded on a page on Camp Swatara's website.</p>
-                <p>We would need to figure out how to integrate the files for the web map with the website platform.</p>
-                <p>Imagery is from U.S. Dept. of Agriculture and was flown in 2015.</p>
+                <p>We could add the camp roads, points of interest, and Appalachian Trail, if desired.</p>
+                <p>The "Select Basemap" link opens a tool to change basemaps.  I was thinking we could have a topographic and imagery basemap.</p>
+                <p>If you mouse-over a trail, the name will appear.  You can also click on a trail for information about blaze and distance.</p>
+                <p>There are couple options for embedding this on the Camp's website:</p>
+                <ol>
+                    <li>Use an <code>iframe</code> whose source is this GitHub page.</li>
+                    <li>Place the files that create the map on the website according to the best practices of the website's platform.</li>
+                </ol>
+                <p>Note: imagery is from U.S. Dept. of Agriculture and was flown in 2015.</p>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -75,11 +82,11 @@
                 <h4 class="modal-title" id="basemapModalLabel">Select Basemap</h4>
               </div>
               <div class="modal-body">
-                <select id="basemapsSelector" class="form-control">
-                    <option value="Outdoors" selected>Mapbox Outdoors</option>
-                    <option value="HikeBike">Mapbox Bike/Hike</option>
-                    <option value="NAIP">Aerial Imagery</option>
-                </select>
+                  <select id="basemapsSelector" class="form-control">
+                      <option value="Outdoors" selected>Mapbox Outdoors</option>
+                      <option value="HikeBike">Mapbox Bike/Hike</option>
+                      <option value="NAIP">Aerial Imagery</option>
+                  </select>                       
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

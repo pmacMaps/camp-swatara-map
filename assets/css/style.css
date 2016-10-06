@@ -11,30 +11,26 @@ body {
     padding-top: 51px;
 }
 
-ul {
-    list-style-type: none;
-}
-
-ul,
-li {
-    padding: 0;
-}
-
 /*** Nav ***/
 .navbar-default {
-    background-color: #585E90;
+    background-color: #52655B;
 }
 
 .navbar-default .navbar-brand,
-.navbar-default .navbar-nav>li>a,
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-nav>li>a:focus{
+.navbar-default .navbar-nav > li > a {
     color: #fff;
+    -webkit-transition: color 0.3s ease-in;
+    -moz-transition: color 0.3s ease-in;
+    -o-transition: color 0.3s ease-in;
+    transition: color 0.3s ease-in;
 }
 
 .navbar-default .navbar-brand:hover,
-.navbar-default .navbar-nav>li>a:hover {
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav>li>a:focus {
     color: #FFFF00;
+    
 }
 
 .navbar .btn-default:hover {

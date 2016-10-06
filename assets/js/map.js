@@ -1,9 +1,6 @@
 "use strict";
 
-/****************
-*** Variables ***
-****************/
-
+/*** Variables ***/
 // viewport
 var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
@@ -21,11 +18,7 @@ var mapboxHikeBike;
 var mapboxOutdoors;
 var mapboxKey = 'pk.eyJ1IjoicG1ja2lubmV5IiwiYSI6ImNpa3NpNTlyNDBlcG51cm0xcG9kd3Z2ZGoifQ.9mtNv6FNVl8c1bd7Kqud_Q';
 
-/*********************
-*** Map & Controls ***
-**********************/
-
-// Map
+/*** Map & Controls ***/
 map = L.map('map', {
    center: homeCoords,
    zoom: initZoom,
@@ -41,7 +34,7 @@ zoomHomeControl = L.Control.zoomHome({
     homeZoom: initZoom
 }).addTo(map);
 
-// Layers
+/*** Layers ***/
 // Mapbox Hike Bike
 mapboxOutdoors = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
@@ -70,8 +63,8 @@ naip = L.tileLayer.wms('//gis.apfo.usda.gov/arcgis/services/NAIP/Pennsylvania_20
 // Hiking Trails
 hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
     style: function(feature) {
-        var lineWeight = 3;
-        var dashArrayType = '5, 5';
+        var lineWeight = 5;
+        var dashArrayType = '5, 8';
         var lineColor;
          
         // custom color for each trail
@@ -139,7 +132,7 @@ hikingTrails.bindPopup(function(evt) {
     
     var popupContent = '<div class="feat-popup">';
     popupContent += '<h3>{Name}</h3><hr />';
-    popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>' + trailLength +'</strong>-miles long.</p>';
+    popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>' + trailLength +'-miles</strong> long.</p>';
     popupContent += '</div>';
     
     return L.Util.template(popupContent, evt.feature.properties);    
