@@ -146,5 +146,9 @@ hikingTrails.bindPopup(function(evt) {
 });
 
 // Add tooltip to Hiking Trails
+// add in conditional that if device is a touch device the tool-tip does not happen
+hikingTrails.bindTooltip(function(evt) {
+   return L.Util.template('<span class="feat-tooltip">{Name}</span>', evt.feature.properties); 
+}, {opacity: 1, interactive: true});
 
 // Basemap Selector Code
