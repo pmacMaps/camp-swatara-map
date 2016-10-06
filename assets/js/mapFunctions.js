@@ -51,3 +51,8 @@ function selectLayerControlCollapsed(windowWidth) {
     }
     return isCollapsed;
 }
+
+// Change Basemaps Event Listener
+$("#basemapsSelector").on("change", function(e) {
+    setBasemap($(this).val());
+});

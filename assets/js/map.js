@@ -43,7 +43,7 @@ zoomHomeControl = L.Control.zoomHome({
 
 // Layers
 // Mapbox Hike Bike
-mapboxOutdoors = L.tileLayer('http://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+mapboxOutdoors = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
 	subdomains: 'abcd',
 	id: 'mapbox.outdoors',
@@ -51,10 +51,10 @@ mapboxOutdoors = L.tileLayer('http://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.pn
 }).addTo(map);
 
 // Mapbox Hike Bike
-mapboxHikeBike = L.tileLayer('http://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+mapboxHikeBike = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
 	subdomains: 'abcd',
-	id: 'mapbox.run-hike-bike',
+	id: 'mapbox.run-bike-hike',
 	accessToken: mapboxKey
 });
 
@@ -152,3 +152,42 @@ hikingTrails.bindTooltip(function(evt) {
 }, {opacity: 1, interactive: true});
 
 // Basemap Selector Code
+function setBasemap(selectedBasemap) {
+    var basemap;
+    
+    // set basemap
+    if (selectedBasemap === 'Outdoors') {
+        if (!map.hasLayer(mapboxOutdoors)) {
+            if (map.hasLayer(mapboxHikeBike)) {
+                map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(naip)) {
+                map.removeLayer(naip);
+            }
+            
+            basemap = mapboxOutdoors;    
+        }        
+    } else if (selectedBasemap === 'HikeBike') {
+        if (!map.hasLayer(mapboxHikeBike)) {
+            if (map.hasLayer(mapboxOutdoors)) {
+                map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(naip)) {
+                map.removeLayer(naip);
+            }
+        }
+        
+        basemap = mapboxHikeBike;
+    } else if (selectedBasemap === 'NAIP') {
+        if (!map.hasLayer(naip)) {
+            if (map.hasLayer(mapboxOutdoors)) {
+                map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(mapboxHikeBike)) {
+                map.removeLayer(mapboxHikeBike);
+            }
+        }
+        
+      basemap = naip;
+    }
+    
+    // add basemap to map
+    map.addLayer(basemap);
+}

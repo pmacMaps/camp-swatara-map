@@ -39,6 +39,7 @@
             <div class="collapse navbar-collapse">
               <ul id="navList" class="nav navbar-nav">
                 <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#basemapModal">Select Basemap</a></li>
               </ul>              
              </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
@@ -58,6 +59,27 @@
                 <p>I envision the web map being embedded on a page on Camp Swatara's website.</p>
                 <p>We would need to figure out how to integrate the files for the web map with the website platform.</p>
                 <p>Imagery is from U.S. Dept. of Agriculture and was flown in 2015.</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div> <!-- ./ About Modal -->
+        <!-- Basemap Modal -->
+        <div class="modal fade" id="basemapModal" tabindex="-1" role="dialog" aria-labelledby="basemapModalLabel">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="basemapModalLabel">Select Basemap</h4>
+              </div>
+              <div class="modal-body">
+                <select id="basemapsSelector" class="form-control">
+                    <option value="Outdoors" selected>Mapbox Outdoors</option>
+                    <option value="HikeBike">Mapbox Bike/Hike</option>
+                    <option value="NAIP">Aerial Imagery</option>
+                </select>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
