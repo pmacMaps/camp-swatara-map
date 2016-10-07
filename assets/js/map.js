@@ -14,6 +14,7 @@ var zoomHomeControl;
 var hikingTrails;
 // Basemaps
 var naip;
+var usgsImagery;
 var mapboxHikeBike;
 var mapboxOutdoors;
 var mapboxKey = 'pk.eyJ1IjoicG1ja2lubmV5IiwiYSI6ImNpa3NpNTlyNDBlcG51cm0xcG9kd3Z2ZGoifQ.9mtNv6FNVl8c1bd7Kqud_Q';
@@ -58,6 +59,14 @@ naip = L.tileLayer.wms('//gis.apfo.usda.gov/arcgis/services/NAIP/Pennsylvania_20
     version: '1.3.0',
     detectRetina: true,
     attribution: 'USDA'
+});
+
+usgsImagery =  L.tileLayer.wms('//basemap.nationalmap.gov/arcgis/services/USGSImageryOnly/MapServer/WMSServer', {
+    layers: '0',
+    format: 'image/png24',
+    version: '1.3.0',
+    detectRetina: true,
+    attribution: 'USGS'
 });
 
 // Hiking Trails
@@ -153,8 +162,8 @@ function setBasemap(selectedBasemap) {
         if (!map.hasLayer(mapboxOutdoors)) {
             if (map.hasLayer(mapboxHikeBike)) {
                 map.removeLayer(mapboxHikeBike);
-            } else if (map.hasLayer(naip)) {
-                map.removeLayer(naip);
+            } else if (map.hasLayer(usgsImagery)) {
+                map.removeLayer(usgsImagery);
             }
             
             basemap = mapboxOutdoors;    
@@ -163,14 +172,14 @@ function setBasemap(selectedBasemap) {
         if (!map.hasLayer(mapboxHikeBike)) {
             if (map.hasLayer(mapboxOutdoors)) {
                 map.removeLayer(mapboxOutdoors);
-            } else if (map.hasLayer(naip)) {
-                map.removeLayer(naip);
+            } else if (map.hasLayer(usgsImagery)) {
+                map.removeLayer(usgsImagery);
             }
         }
         
         basemap = mapboxHikeBike;
-    } else if (selectedBasemap === 'NAIP') {
-        if (!map.hasLayer(naip)) {
+    } else if (selectedBasemap === 'USGS') {
+        if (!map.hasLayer(usgsImagery)) {
             if (map.hasLayer(mapboxOutdoors)) {
                 map.removeLayer(mapboxOutdoors);
             } else if (map.hasLayer(mapboxHikeBike)) {
@@ -178,7 +187,7 @@ function setBasemap(selectedBasemap) {
             }
         }
         
-      basemap = naip;
+      basemap = usgsImagery;
     }
     
     // add basemap to map
