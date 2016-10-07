@@ -17,6 +17,7 @@ var naip;
 var usgsImagery;
 var mapboxHikeBike;
 var mapboxOutdoors;
+var mapboxStreetsSatellite;
 var mapboxKey = 'pk.eyJ1IjoicG1ja2lubmV5IiwiYSI6ImNpa3NpNTlyNDBlcG51cm0xcG9kd3Z2ZGoifQ.9mtNv6FNVl8c1bd7Kqud_Q';
 
 /*** Map & Controls ***/
@@ -49,6 +50,14 @@ mapboxHikeBike = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?acc
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
 	subdomains: 'abcd',
 	id: 'mapbox.run-bike-hike',
+	accessToken: mapboxKey
+});
+
+// Mapbox Streets Satellite
+mapboxStreetsSatellite = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
+	subdomains: 'abcd',
+	id: 'mapbox.streets-satellite',
 	accessToken: mapboxKey
 });
 
@@ -162,6 +171,8 @@ function setBasemap(selectedBasemap) {
         if (!map.hasLayer(mapboxOutdoors)) {
             if (map.hasLayer(mapboxHikeBike)) {
                 map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(mapboxStreetsSatellite)) {
+                map.removeLayer(mapboxStreetsSatellite);
             } else if (map.hasLayer(usgsImagery)) {
                 map.removeLayer(usgsImagery);
             }
@@ -172,6 +183,8 @@ function setBasemap(selectedBasemap) {
         if (!map.hasLayer(mapboxHikeBike)) {
             if (map.hasLayer(mapboxOutdoors)) {
                 map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(mapboxStreetsSatellite)) {
+                map.removeLayer(mapboxStreetsSatellite);
             } else if (map.hasLayer(usgsImagery)) {
                 map.removeLayer(usgsImagery);
             }
@@ -184,10 +197,24 @@ function setBasemap(selectedBasemap) {
                 map.removeLayer(mapboxOutdoors);
             } else if (map.hasLayer(mapboxHikeBike)) {
                 map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(mapboxStreetsSatellite)) {
+                map.removeLayer(mapboxStreetsSatellite);
             }
         }
         
       basemap = usgsImagery;
+    } else if (selectedBasemap === 'MapboxImagery') {
+        if (!map.hasLayer(mapboxStreetsSatellite)) {
+            if (map.hasLayer(mapboxOutdoors)) {
+                map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(mapboxHikeBike)) {
+                map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(usgsImagery)) {
+                map.removeLayer(usgsImagery);
+            }
+        }
+        
+      basemap = mapboxStreetsSatellite;
     }
     
     // add basemap to map
