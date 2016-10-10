@@ -13,8 +13,11 @@ var zoomHomeControl;
 // Layers
 var hikingTrails;
 // Basemaps
-var naip;
-var usgsImagery;
+// Esri
+var esriImagery;
+var esriImageryLabels;
+var esriTransportationLabels;
+// Mapbox
 var mapboxHikeBike;
 var mapboxOutdoors;
 var mapboxStreetsSatellite;
@@ -59,23 +62,6 @@ mapboxStreetsSatellite = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}
 	subdomains: 'abcd',
 	id: 'mapbox.streets-satellite',
 	accessToken: mapboxKey
-});
-
-// USDA NAIP Imagery
-naip = L.tileLayer.wms('//gis.apfo.usda.gov/arcgis/services/NAIP/Pennsylvania_2015_1m/ImageServer/WMSServer', {
-    layers: '0',
-    format: 'image/png24',
-    version: '1.3.0',
-    detectRetina: true,
-    attribution: 'USDA'
-});
-
-usgsImagery =  L.tileLayer.wms('//basemap.nationalmap.gov/arcgis/services/USGSImageryOnly/MapServer/WMSServer', {
-    layers: '0',
-    format: 'image/png24',
-    version: '1.3.0',
-    detectRetina: true,
-    attribution: 'USGS'
 });
 
 // Hiking Trails
@@ -191,18 +177,6 @@ function setBasemap(selectedBasemap) {
         }
         
         basemap = mapboxHikeBike;
-    } else if (selectedBasemap === 'USGS') {
-        if (!map.hasLayer(usgsImagery)) {
-            if (map.hasLayer(mapboxOutdoors)) {
-                map.removeLayer(mapboxOutdoors);
-            } else if (map.hasLayer(mapboxHikeBike)) {
-                map.removeLayer(mapboxHikeBike);
-            } else if (map.hasLayer(mapboxStreetsSatellite)) {
-                map.removeLayer(mapboxStreetsSatellite);
-            }
-        }
-        
-      basemap = usgsImagery;
     } else if (selectedBasemap === 'MapboxImagery') {
         if (!map.hasLayer(mapboxStreetsSatellite)) {
             if (map.hasLayer(mapboxOutdoors)) {
