@@ -27,8 +27,7 @@ var mapboxKey = 'pk.eyJ1IjoicG1ja2lubmV5IiwiYSI6ImNpa3NpNTlyNDBlcG51cm0xcG9kd3Z2
 map = L.map('map', {
    center: homeCoords,
    zoom: initZoom,
-   zoomControl: false,
-   maxZoom: 17
+   zoomControl: false   
 });
 
 // Zoom Home Control
@@ -124,8 +123,7 @@ hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
         
         return {
             color: lineColor,
-            weight: lineWeight,
-            dashArray: dashArrayType
+            weight: lineWeight            
         }   
      }
 }).addTo(map);
