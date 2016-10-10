@@ -17,6 +17,7 @@ var hikingTrails;
 var esriImagery;
 var esriImageryLabels;
 var esriTransportationLabels;
+var esriBasemap;
 // Mapbox
 var mapboxHikeBike;
 var mapboxOutdoors;
@@ -38,7 +39,8 @@ zoomHomeControl = L.Control.zoomHome({
     homeZoom: initZoom
 }).addTo(map);
 
-/*** Layers ***/
+/*** Basemaps ***/
+// Mapbox 
 // Mapbox Hike Bike
 mapboxOutdoors = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://mapbox.com/about/maps/">MapBox</a>',
@@ -63,6 +65,20 @@ mapboxStreetsSatellite = L.tileLayer('//api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}
 	accessToken: mapboxKey
 });
 
+// Esri
+// Esri Imagery
+esriImagery = L.esri.basemapLayer('Imagery');
+
+// Esri Imagery Labels
+esriImageryLabels = L.esri.basemapLayer('ImageryLabels');
+
+// Esri Transportation Labels
+esriTransportationLabels = L.esri.basemapLayer('ImageryTransportation');
+
+// Esri Basemap
+esriBasemap = L.layerGroup([esriImagery, esriImageryLabels, esriTransportationLabels]);
+
+/*** Overlays ***/
 // Hiking Trails
 hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
     style: function(feature) {
@@ -157,8 +173,8 @@ function setBasemap(selectedBasemap) {
                 map.removeLayer(mapboxHikeBike);
             } else if (map.hasLayer(mapboxStreetsSatellite)) {
                 map.removeLayer(mapboxStreetsSatellite);
-            } else if (map.hasLayer(usgsImagery)) {
-                map.removeLayer(usgsImagery);
+            } else if (map.hasLayer(esriBasemap)) {
+                map.removeLayer(esriBasemap);
             }
             
             basemap = mapboxOutdoors;    
@@ -169,8 +185,8 @@ function setBasemap(selectedBasemap) {
                 map.removeLayer(mapboxOutdoors);
             } else if (map.hasLayer(mapboxStreetsSatellite)) {
                 map.removeLayer(mapboxStreetsSatellite);
-            } else if (map.hasLayer(usgsImagery)) {
-                map.removeLayer(usgsImagery);
+            } else if (map.hasLayer(esriBasemap)) {
+                map.removeLayer(esriBasemap);
             }
         }
         
@@ -181,12 +197,24 @@ function setBasemap(selectedBasemap) {
                 map.removeLayer(mapboxOutdoors);
             } else if (map.hasLayer(mapboxHikeBike)) {
                 map.removeLayer(mapboxHikeBike);
-            } else if (map.hasLayer(usgsImagery)) {
-                map.removeLayer(usgsImagery);
+            } else if (map.hasLayer(esriBasemap)) {
+                map.removeLayer(esriBasemap);
             }
         }
         
       basemap = mapboxStreetsSatellite;
+    } else if (selectedBasemap === 'EsriImagery') {
+        if (!map.hasLayer(esriBasemap)) {
+            if (map.hasLayer(mapboxOutdoors)) {
+                map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(mapboxHikeBike)) {
+                map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(mapboxStreetsSatellite)) {
+                map.removeLayer(mapboxStreetsSatellite);
+            }
+        }
+        
+        basemap = esriBasemap;
     }
     
     // add basemap to map
