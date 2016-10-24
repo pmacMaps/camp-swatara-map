@@ -1,13 +1,15 @@
 "use strict";
 
 /*** Variables ***/
+// boolean if browser is on a mobile device or not
+var isMobileDevice = L.Browser.mobile;
 // viewport
 var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
 var windowArea = windowWidth * windowHeight;
 // Map & Controls
 var map;
-var homeCoords = [40.50181, -76.35811];
+var homeCoords = [40.501449, -76.362061];
 var initZoom = 15; //setInitialMapZoom(windowWidth);
 var zoomHomeControl;
 // Layers
@@ -144,8 +146,23 @@ hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
      }
 }).addTo(map);
 
+// Add tooltip to Hiking Trails
+function bindTooltipHikingTrails() {
+    hikingTrails.bindTooltip(function(evt) {
+       return L.Util.template('<span class="feat-tooltip">{Name}</span>', evt.feature.properties); 
+    }, {opacity: 1, interactive: true});
+}
+
 // Add popup to Hiking Trails
 hikingTrails.bindPopup(function(evt) {
+    if (!isMobileDevice) {
+        evt.on('popupopen', function() {
+            hikingTrails.unbindTooltip();
+        });   
+        
+        evt.on('popupclose', bindTooltipHikingTrails);
+    }   
+        
     var trailLength = reduceDecimalsTrailLength(evt.feature.properties.Miles);
     
     var popupContent = '<div class="feat-popup">';
@@ -156,11 +173,10 @@ hikingTrails.bindPopup(function(evt) {
     return L.Util.template(popupContent, evt.feature.properties);    
 });
 
-// Add tooltip to Hiking Trails
-// add in conditional that if device is a touch device the tool-tip does not happen
-hikingTrails.bindTooltip(function(evt) {
-   return L.Util.template('<span class="feat-tooltip">{Name}</span>', evt.feature.properties); 
-}, {opacity: 1, interactive: true});
+// Hiking Trails tooltip only added for non-mobile browsers
+if (!isMobileDevice) {
+    bindTooltipHikingTrails();
+}
 
 // Basemap Selector Code
 function setBasemap(selectedBasemap) {
