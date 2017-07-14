@@ -5,12 +5,10 @@
 var isMobileDevice = L.Browser.mobile;
 // viewport
 var windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-var windowHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
-var windowArea = windowWidth * windowHeight;
 // Map & Controls
 var map;
 var homeCoords = [40.501449, -76.362061];
-var initZoom = 15; //setInitialMapZoom(windowWidth);
+var initZoom = setInitialMapZoom(windowWidth);
 var zoomHomeControl;
 // Layers
 var hikingTrails;
@@ -25,6 +23,102 @@ var mapboxHikeBike;
 var mapboxOutdoors;
 var mapboxStreetsSatellite;
 var mapboxKey = 'pk.eyJ1IjoicG1ja2lubmV5IiwiYSI6ImNpa3NpNTlyNDBlcG51cm0xcG9kd3Z2ZGoifQ.9mtNv6FNVl8c1bd7Kqud_Q';
+
+/*** Functions ***/
+// Reduce number of decimals for trail lenght in pop-up
+function reduceDecimalsTrailLength(data) {
+    var trailLengthReducedDecimals = data.toFixed(2); 
+    return trailLengthReducedDecimals;
+}
+
+// Set the initial map zoom level based upon viewport width
+// Needs updated
+function setInitialMapZoom(windowWidth) {
+    var mapZoom;    
+    if (windowWidth < 500) {
+        mapZoom = 14; 
+    } else {
+        mapZoom = 15;  
+    }
+    return mapZoom;
+}
+
+// Set max width of pop-up window 
+// Needs updated and tied to pop-ups
+function setPopupMaxWidth(windowWidth) {
+    var maxWidth;
+    if (windowWidth < 450) {
+        maxWidth = 240;
+    } else {
+        maxWidth = 300;
+    }
+        return maxWidth;
+}
+
+// Add event listener to change event for basemaps select element
+// Run function to change basemap
+$("#basemapsSelector").on("change", function(e) {
+    setBasemap($(this).val());
+});
+
+// Basemap Selector Code
+function setBasemap(selectedBasemap) {
+    var basemap;
+    
+    // set basemap
+    if (selectedBasemap === 'Outdoors') {
+        if (!map.hasLayer(mapboxOutdoors)) {
+            if (map.hasLayer(mapboxHikeBike)) {
+                map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(mapboxStreetsSatellite)) {
+                map.removeLayer(mapboxStreetsSatellite);
+            } else if (map.hasLayer(esriBasemap)) {
+                map.removeLayer(esriBasemap);
+            }
+            
+            basemap = mapboxOutdoors;    
+        }        
+    } else if (selectedBasemap === 'HikeBike') {
+        if (!map.hasLayer(mapboxHikeBike)) {
+            if (map.hasLayer(mapboxOutdoors)) {
+                map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(mapboxStreetsSatellite)) {
+                map.removeLayer(mapboxStreetsSatellite);
+            } else if (map.hasLayer(esriBasemap)) {
+                map.removeLayer(esriBasemap);
+            }
+        }
+        
+        basemap = mapboxHikeBike;
+    } else if (selectedBasemap === 'MapboxImagery') {
+        if (!map.hasLayer(mapboxStreetsSatellite)) {
+            if (map.hasLayer(mapboxOutdoors)) {
+                map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(mapboxHikeBike)) {
+                map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(esriBasemap)) {
+                map.removeLayer(esriBasemap);
+            }
+        }
+        
+      basemap = mapboxStreetsSatellite;
+    } else if (selectedBasemap === 'EsriImagery') {
+        if (!map.hasLayer(esriBasemap)) {
+            if (map.hasLayer(mapboxOutdoors)) {
+                map.removeLayer(mapboxOutdoors);
+            } else if (map.hasLayer(mapboxHikeBike)) {
+                map.removeLayer(mapboxHikeBike);
+            } else if (map.hasLayer(mapboxStreetsSatellite)) {
+                map.removeLayer(mapboxStreetsSatellite);
+            }
+        }
+        
+        basemap = esriBasemap;
+    }
+    
+    // add basemap to map
+    map.addLayer(basemap);
+}
 
 /*** Map & Controls ***/
 map = L.map('map', {
@@ -171,68 +265,9 @@ hikingTrails.bindPopup(function(evt) {
     popupContent += '</div>';
     
     return L.Util.template(popupContent, evt.feature.properties);    
-});
+}, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)});
 
 // Hiking Trails tooltip only added for non-mobile browsers
 if (!isMobileDevice) {
     bindTooltipHikingTrails();
-}
-
-// Basemap Selector Code
-function setBasemap(selectedBasemap) {
-    var basemap;
-    
-    // set basemap
-    if (selectedBasemap === 'Outdoors') {
-        if (!map.hasLayer(mapboxOutdoors)) {
-            if (map.hasLayer(mapboxHikeBike)) {
-                map.removeLayer(mapboxHikeBike);
-            } else if (map.hasLayer(mapboxStreetsSatellite)) {
-                map.removeLayer(mapboxStreetsSatellite);
-            } else if (map.hasLayer(esriBasemap)) {
-                map.removeLayer(esriBasemap);
-            }
-            
-            basemap = mapboxOutdoors;    
-        }        
-    } else if (selectedBasemap === 'HikeBike') {
-        if (!map.hasLayer(mapboxHikeBike)) {
-            if (map.hasLayer(mapboxOutdoors)) {
-                map.removeLayer(mapboxOutdoors);
-            } else if (map.hasLayer(mapboxStreetsSatellite)) {
-                map.removeLayer(mapboxStreetsSatellite);
-            } else if (map.hasLayer(esriBasemap)) {
-                map.removeLayer(esriBasemap);
-            }
-        }
-        
-        basemap = mapboxHikeBike;
-    } else if (selectedBasemap === 'MapboxImagery') {
-        if (!map.hasLayer(mapboxStreetsSatellite)) {
-            if (map.hasLayer(mapboxOutdoors)) {
-                map.removeLayer(mapboxOutdoors);
-            } else if (map.hasLayer(mapboxHikeBike)) {
-                map.removeLayer(mapboxHikeBike);
-            } else if (map.hasLayer(esriBasemap)) {
-                map.removeLayer(esriBasemap);
-            }
-        }
-        
-      basemap = mapboxStreetsSatellite;
-    } else if (selectedBasemap === 'EsriImagery') {
-        if (!map.hasLayer(esriBasemap)) {
-            if (map.hasLayer(mapboxOutdoors)) {
-                map.removeLayer(mapboxOutdoors);
-            } else if (map.hasLayer(mapboxHikeBike)) {
-                map.removeLayer(mapboxHikeBike);
-            } else if (map.hasLayer(mapboxStreetsSatellite)) {
-                map.removeLayer(mapboxStreetsSatellite);
-            }
-        }
-        
-        basemap = esriBasemap;
-    }
-    
-    // add basemap to map
-    map.addLayer(basemap);
 }
