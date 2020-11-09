@@ -15,7 +15,7 @@
         <!-- Leaflet Zoom Home -->
         <link rel="stylesheet" href="assets/js/leaflet.zoomhome/leaflet.zoomhome.css" />
         <!-- Custom App Styles -->
-        <link rel="stylesheet" href="assets/css/style.css" />        
+        <link rel="stylesheet" href="assets/css/style.css" />
         <!-- Font Awesome -->
         <script src="//use.fontawesome.com/fb6bc9cb24.js"></script>
     </head>
@@ -40,7 +40,7 @@
               <ul class="nav navbar-nav">
                 <li><a href="#" data-toggle="modal" data-target="#aboutModal">About</a></li>
                 <li><a href="#" data-toggle="modal" data-target="#basemapModal">Select Basemap</a></li>
-              </ul>              
+              </ul>
              </div><!-- /.navbar-collapse -->
           </div><!-- /.container-fluid -->
         </nav> <!-- /. nav -->
@@ -59,12 +59,12 @@
                 <p>I envision the web map being embedded on a page on Camp Swatara's website.</p>
                 <p>We could add the camp roads, points of interest, and Appalachian Trail, if desired.</p>
                 <p>The "Select Basemap" link opens a tool to change basemaps.  I was thinking we could have a topographic and imagery basemap.</p>
-                <p>If you mouse-over a trail, the name will appear.  You can also click on a trail for information about blaze and distance.</p>
+                <p>You can also click on a trail for information about blaze and distance.</p>
                 <p>There are couple options for embedding this on the Camp's website:</p>
                 <ol>
-                    <li>Use an <code>iframe</code> whose source is this GitHub page.</li>
+                    <li>Use an <code>iframe</code> whose source is this GitHub page, or files on the Camp Swatara website server.</li>
                     <li>Place the files that create the map on the website according to the best practices of the website's platform.</li>
-                </ol>                
+                </ol>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -81,12 +81,11 @@
                 <h4 class="modal-title" id="basemapModalLabel">Select Basemap</h4>
               </div>
               <div class="modal-body">
+                <p>Demo not working yet.</p>
                   <select id="basemapsSelector" class="form-control">
-                      <option value="Outdoors" selected>Mapbox Outdoors</option>
-                      <option value="HikeBike">Mapbox Bike/Hike</option>
-                      <option value="MapboxImagery">Mapbox Imagery</option>                     
-                      <option value="EsriImagery">Esri Imagery</option>
-                  </select>                       
+                     <option value="EsriImagery">Esri Imagery</option>
+                     <option value="Topographic">Esri Topographic</option>
+                  </select>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -94,7 +93,7 @@
             </div>
           </div>
         </div> <!-- ./ About Modal -->
-        <!-- /. Modals -->     
+        <!-- /. Modals -->
         <!-- jQuery -->
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <!-- Bootstrap -->
@@ -109,8 +108,6 @@
     crossorigin=""></script>
         <!-- Leaflet AJAX -->
         <script src="assets/js/leaflet-ajax/leaflet.ajax.min.js"></script>
-        <!-- Map Functions Module -->
-        <script src="assets/js/mapFunctions.js"></script>
         <!-- Map App -->
         <script src="assets/js/map.js"></script>
     </body>
