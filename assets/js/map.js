@@ -59,24 +59,25 @@ const zoomHomeControl = L.Control.zoomHome({
     position: 'topleft',
     zoomHomeTitle: 'Full map extent',
     homeCoordinates: homeCoords,
-    homeZoom: initZoom
+    homeZoom: initZoom,
+    maxZoom: 17
 }).addTo(map);
 
 /*** Basemaps ***/
-// Esri
-// Esri Imagery
-const esriImagery = L.esri.basemapLayer('Imagery');
+// PEMA Imagery
+const pemaImagery = L.esri.tiledMapLayer({
+    url: ' https://imagery.pasda.psu.edu/arcgis/rest/services/pasda/PEMAImagery2018_2020/MapServer',
+    attribution: 'Pennsylvania Emergency Management Agency'
+});
 
-// Esri Imagery Labels
-const esriImageryLabels = L.esri.basemapLayer('ImageryLabels');
+// Open Topographic Map
+const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    attribution: 'OpenTopoMap'
+});
 
-// Esri Transportation Labels
-const esriTransportationLabels = L.esri.basemapLayer('ImageryTransportation');
+// set inital basemap
+let basemap = pemaImagery.addTo(map);
 
-// Esri Basemap
-const esriBasemap = L.layerGroup([esriImagery, esriImageryLabels, esriTransportationLabels]);
-
-const basemap = esriBasemap.addTo(map);
 /*** Overlays ***/
 // Hiking Trails
 // consider switchin to Esri-hosted feature service
