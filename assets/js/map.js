@@ -38,14 +38,21 @@ function setPopupMaxWidth(windowWidth) {
         return maxWidth;
 }
 
-// Add event listener to change event for basemaps select element
-// Run function to change basemap
-// enhancement
-/*
-$("#basemapsSelector").on("change", function(e) {
-    setBasemap($(this).val());
-});
-*/
+//  Change basemap
+const setBasemap = (selectedBasemap, basemap, webmap, topo, imagery) => {
+    console.log(selectedBasemap);
+    if (basemap) {
+	   webmap.removeLayer(basemap);
+	}
+    if (selectedBasemap === 'imagery') {
+        basemap = imagery;
+	} else if (selectedBasemap === 'topography') {
+	   basemap = topo;
+	}
+    webmap.addLayer(basemap);
+    // close basemap panel - not working
+    //$('#basemapModal').collapse("hide");
+};
 
 /*** Map & Controls ***/
 const map = L.map('map', {
@@ -67,11 +74,13 @@ const zoomHomeControl = L.Control.zoomHome({
 // PEMA Imagery
 const pemaImagery = L.esri.tiledMapLayer({
     url: ' https://imagery.pasda.psu.edu/arcgis/rest/services/pasda/PEMAImagery2018_2020/MapServer',
+    detectRetina: true,
     attribution: 'Pennsylvania Emergency Management Agency'
 });
 
 // Open Topographic Map
 const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    detectRetina: true,
     attribution: 'OpenTopoMap'
 });
 
@@ -156,3 +165,9 @@ hikingTrails.bindPopup(function(evt) {
 
     return L.Util.template(popupContent, evt.feature.properties);
 }, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)});
+
+// wire up basemap select
+const selectEl = document.getElementById('basemapsSelector');
+selectEl.addEventListener('change', () => {
+    setBasemap(selectEl.value, basemap, map, openTopoMap, pemaImagery)
+});
