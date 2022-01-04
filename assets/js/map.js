@@ -40,8 +40,14 @@ function setPopupMaxWidth(windowWidth) {
 
 //  Change basemap
 const setBasemap = (selectedBasemap, basemap, webmap, topo, imagery) => {
-    console.log(selectedBasemap);
     if (basemap) {
+       // remove topo map attribution > TODO
+       /*
+       if (basemap.options.name === 'topo') {
+        L.control.attribution.removeAttribution('OpenTopoMap');
+       }
+       */
+       // remove existing basemap
 	   webmap.removeLayer(basemap);
 	}
     if (selectedBasemap === 'imagery') {
@@ -50,8 +56,8 @@ const setBasemap = (selectedBasemap, basemap, webmap, topo, imagery) => {
 	   basemap = topo;
 	}
     webmap.addLayer(basemap);
-    // close basemap panel - not working
-    //$('#basemapModal').collapse("hide");
+    // close basemap panel
+    $('#basemapModal').modal('hide');
 };
 
 /*** Map & Controls ***/
@@ -73,6 +79,7 @@ const zoomHomeControl = L.Control.zoomHome({
 /*** Basemaps ***/
 // PEMA Imagery
 const pemaImagery = L.esri.tiledMapLayer({
+    name: 'imagery',
     url: ' https://imagery.pasda.psu.edu/arcgis/rest/services/pasda/PEMAImagery2018_2020/MapServer',
     detectRetina: true,
     attribution: 'Pennsylvania Emergency Management Agency'
@@ -80,6 +87,7 @@ const pemaImagery = L.esri.tiledMapLayer({
 
 // Open Topographic Map
 const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    name: 'topo',
     detectRetina: true,
     attribution: 'OpenTopoMap'
 });
@@ -160,7 +168,10 @@ hikingTrails.bindPopup(function(evt) {
 
     let popupContent = '<div class="feat-popup">';
     popupContent += '<h3>{Name}</h3><hr />';
-    popupContent += '<p>The trail has a <strong>{Blaze}</strong> blaze and is <strong>' + trailLength +'-miles</strong> long.</p>';
+    popupContent += '<ul>';
+    popupContent += '<li>Blaze: {Blaze}</li>';
+    popupContent += `<li>Length: ${trailLength}-miles</li>`;
+    popupContent += '</ul>';
     popupContent += '</div>';
 
     return L.Util.template(popupContent, evt.feature.properties);
