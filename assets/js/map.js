@@ -37,24 +37,6 @@ function setPopupMaxWidth(windowWidth) {
         return maxWidth;
 }
 
-//  Change basemap
-const setBasemap = (selectedBasemap, basemap, webmap, topo, imagery) => {
-    if (basemap) {
-        webmap.attributionControl.removeAttribution('OpenTopoMap');
-        // remove existing basemap
-	   webmap.removeLayer(basemap);
-    }
-    if (selectedBasemap === 'imagery') {
-        basemap = imagery;
-	} else if (selectedBasemap === 'topography') {
-	   basemap = topo;
-       webmap.attributionControl.addAttribution('OpenTopoMap');
-	}
-    webmap.addLayer(basemap);
-    // close basemap panel
-    $('#basemapModal').modal('hide');
-};
-
 /*** Map & Controls ***/
 const map = L.map('map', {
    center: homeCoords,
@@ -77,7 +59,7 @@ const pemaImagery = L.esri.tiledMapLayer({
     url: ' https://imagery.pasda.psu.edu/arcgis/rest/services/pasda/PEMAImagery2018_2020/MapServer',
     detectRetina: true,
     attribution: 'Pennsylvania Emergency Management Agency'
-});
+}).addTo(map);
 
 // Open Topographic Map
 const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
@@ -85,9 +67,14 @@ const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png'
     attribution: 'OpenTopoMap'
 });
 
-// set inital basemap
-let basemap = pemaImagery;
-basemap.addTo(map);
+const basemapLayers = {
+    "Satellite Imagery": pemaImagery,
+    "Topographic": openTopoMap
+};
+
+const layerControlUI = L.control.layers(basemapLayers, null, {
+    collapsed: false
+}).addTo(map);
 
 /*** Overlays ***/
 // Hiking Trails
@@ -170,9 +157,3 @@ hikingTrails.bindPopup(function(evt) {
 
     return L.Util.template(popupContent, evt.feature.properties);
 }, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)});
-
-// wire up basemap select
-const selectEl = document.getElementById('basemapsSelector');
-selectEl.addEventListener('change', () => {
-    setBasemap(selectEl.value, basemap, map, openTopoMap, pemaImagery)
-});
