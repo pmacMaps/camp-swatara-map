@@ -4,18 +4,15 @@
 const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 // Map & Controls
 const homeCoords = [40.501449, -76.362061];
-const initZoom = setInitialMapZoom(windowWidth);
 
 /*** Functions ***/
-// Reduce number of decimals for trail length in pop-up
-function reduceDecimalsTrailLength(data) {
-    const trailLengthReducedDecimals = data.toFixed(2);
-    return trailLengthReducedDecimals;
+// Reduce number of decimals of number to 2
+const reduceNumberDecimals = (data) => {
+    return data.toFixed(2);
 }
 
 // Set the initial map zoom level based upon viewport width
-// needs fine-tuned
-function setInitialMapZoom(windowWidth) {
+const setInitialMapZoom = (windowWidth) => {
     let mapZoom;
     if (windowWidth < 500) {
         mapZoom = 14;
@@ -25,16 +22,17 @@ function setInitialMapZoom(windowWidth) {
     return mapZoom;
 }
 
+const initZoom = setInitialMapZoom(windowWidth);
+
 // Set max width of pop-up window
-// Needs updated and tied to pop-ups
-function setPopupMaxWidth(windowWidth) {
+const setPopupMaxWidth = (windowWidth) => {
     let maxWidth;
     if (windowWidth < 450) {
         maxWidth = 240;
     } else {
         maxWidth = 300;
     }
-        return maxWidth;
+    return maxWidth;
 }
 
 /*** Map & Controls ***/
@@ -145,7 +143,7 @@ const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
 
 // Add popup to Hiking Trails
 hikingTrails.bindPopup(function(evt) {
-    const trailLength = reduceDecimalsTrailLength(evt.feature.properties.Miles);
+    const trailLength = reduceNumberDecimals(evt.feature.properties.Miles);
 
     let popupContent = '<div class="feat-popup">';
     popupContent += '<h3>{Name}</h3><hr />';
