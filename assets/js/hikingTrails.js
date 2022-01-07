@@ -1,83 +1,9 @@
-"use strict";
+import { reduceNumberDecimals, setPopupMaxWidth } from './functions.js';
+import { windowWidth } from './constants.js';
 
-// viewport
-const windowWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-// Map & Controls
-const homeCoords = [40.501449, -76.362061];
-
-/*** Functions ***/
-// Reduce number of decimals of number to 2
-const reduceNumberDecimals = (data) => {
-    return data.toFixed(2);
-}
-
-// Set the initial map zoom level based upon viewport width
-const setInitialMapZoom = (windowWidth) => {
-    let mapZoom;
-    if (windowWidth < 500) {
-        mapZoom = 14;
-    } else {
-        mapZoom = 15;
-    }
-    return mapZoom;
-}
-
-const initZoom = setInitialMapZoom(windowWidth);
-
-// Set max width of pop-up window
-const setPopupMaxWidth = (windowWidth) => {
-    let maxWidth;
-    if (windowWidth < 450) {
-        maxWidth = 240;
-    } else {
-        maxWidth = 300;
-    }
-    return maxWidth;
-}
-
-/*** Map & Controls ***/
-const map = L.map('map', {
-   center: homeCoords,
-   zoom: initZoom,
-   zoomControl: false
-});
-
-// Zoom Home Control
-const zoomHomeControl = L.Control.zoomHome({
-    position: 'topleft',
-    zoomHomeTitle: 'Full map extent',
-    homeCoordinates: homeCoords,
-    homeZoom: initZoom,
-    maxZoom: 17
-}).addTo(map);
-
-/*** Basemaps ***/
-// PEMA Imagery
-const pemaImagery = L.esri.tiledMapLayer({
-    url: ' https://imagery.pasda.psu.edu/arcgis/rest/services/pasda/PEMAImagery2018_2020/MapServer',
-    detectRetina: true,
-    attribution: 'Pennsylvania Emergency Management Agency'
-}).addTo(map);
-
-// Open Topographic Map
-const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
-    detectRetina: true,
-    attribution: 'OpenTopoMap'
-});
-
-const basemapLayers = {
-    "Satellite Imagery": pemaImagery,
-    "Topographic": openTopoMap
-};
-
-const layerControlUI = L.control.layers(basemapLayers, null, {
-    collapsed: false
-}).addTo(map);
-
-/*** Overlays ***/
 // Hiking Trails
 // consider switchin to Esri-hosted feature service
-const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
+export const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
     style: function(feature) {
         const lineWeight = 5;
         const dashArrayType = '5, 8';
@@ -133,13 +59,12 @@ const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
             default:
                 lineColor = '#fff';
         }
-
         return {
             color: lineColor,
             weight: lineWeight
         }
      }
-}).addTo(map);
+});
 
 // Add popup to Hiking Trails
 hikingTrails.bindPopup(function(evt) {
