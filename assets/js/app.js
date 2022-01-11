@@ -1,7 +1,7 @@
 "use strict";
 
 import { initZoom, homeCoords} from './constants.js';
-import { zoomHomeControl, layerControlUI} from './mapControls.js';
+import { zoomHomeControl, layerControlUI, scaleBarControl} from './mapControls.js';
 import { pemaImagery } from './basemaps.js';
 import { hikingTrails } from './hikingTrails.js';
 
@@ -15,6 +15,7 @@ const map = L.map('map', {
 // add map controls
 zoomHomeControl.addTo(map);
 layerControlUI.addTo(map);
+scaleBarControl.addTo(map);
 
 // basemap
 pemaImagery.addTo(map);
