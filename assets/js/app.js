@@ -4,6 +4,7 @@ import { initZoom, homeCoords} from './constants.js';
 import { zoomHomeControl, layerControlUI} from './mapControls.js';
 import { pemaImagery } from './basemaps.js';
 import { hikingTrails } from './hikingTrails.js';
+import { atTrail } from './overlays.js';
 
 /*** Map & Controls ***/
 const map = L.map('map', {
@@ -20,4 +21,5 @@ layerControlUI.addTo(map);
 pemaImagery.addTo(map);
 
 // overlays
+atTrail.addTo(map);
 hikingTrails.addTo(map);
