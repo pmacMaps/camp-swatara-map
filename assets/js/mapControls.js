@@ -1,7 +1,7 @@
 import { homeCoords, initZoom} from './constants.js';
 import { basemapLayers } from './basemaps.js';
 
-// Zoom Home Control
+// zoom and full extent control
 export const zoomHomeControl = L.Control.zoomHome({
     position: 'topleft',
     zoomHomeTitle: 'Full map extent',
@@ -12,4 +12,12 @@ export const zoomHomeControl = L.Control.zoomHome({
 // Layer Control
 export const layerControlUI = L.control.layers(basemapLayers, null, {
     collapsed: false
+});
+// scale bar control
+export const scaleBarControl = L.control.scale({
+    maxWidth: 200,
+    metric: false,
+    imperial: true,
+    updateWhenIdle: true,
+    position: 'bottomleft'
 });
