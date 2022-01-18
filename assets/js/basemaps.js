@@ -6,13 +6,25 @@ export const pemaImagery = L.esri.tiledMapLayer({
     attribution: 'Pennsylvania Emergency Management Agency'
 });
 
-// Open Topographic Map
-const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
+// USA Topographic
+const usaTopo = L.esri.tiledMapLayer({
+    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer',
     detectRetina: true,
-    attribution: 'OpenTopoMap'
+    maxZoom: 15,
+    attribution: 'Copyright:© 2013 National Geographic Society, i-cubed'
 });
 
+// USGS Topographic
+const usgsTopo = L.esri.tiledMapLayer({
+    url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer',
+    detectRetina: true,
+    maxZoom: 15,
+    attribution: 'USGS The National Map',
+});
+
+// basemap layers for control
 export const basemapLayers = {
     "Satellite Imagery": pemaImagery,
-    "Topographic": openTopoMap
+    "Historic Topographic": usaTopo,
+    "USGS Topopgrahic": usgsTopo
 };
