@@ -22,9 +22,16 @@ const usgsTopo = L.esri.tiledMapLayer({
     attribution: 'USGS The National Map',
 });
 
+// Open Topographic Map
+const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
+    detectRetina: true,
+    attribution: 'OpenTopoMap'
+});
+
 // basemap layers for control
 export const basemapLayers = {
     "Satellite Imagery": pemaImagery,
     "Historic Topographic": usaTopo,
-    "USGS Topopgrahic": usgsTopo
+    "USGS Topopgrahic": usgsTopo,
+    "Open Topo Maps (metric)": openTopoMap
 };
