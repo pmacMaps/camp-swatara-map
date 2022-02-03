@@ -12,7 +12,7 @@ export const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geoj
         // custom color for each trail
         switch(feature.properties.Name) {
             case 'Boundary Trail':
-                lineColor = 'rgb(78,78,78)';
+                lineColor = 'rgb(255,170,170)';
                 break;
             case "Cat's Eye Trail":
                 lineColor = 'rgb(255,85,0)';
@@ -27,7 +27,7 @@ export const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geoj
                 lineColor = 'rgb(197,0,255)';
                 break;
             case 'Frog Pond Trail':
-                lineColor = 'rgb(230,115,0)';
+                lineColor = 'rgb(200,20,43)';
                 break;
             case 'Grapevine Trail':
                 lineColor = 'rgb(169,0,230)';
@@ -54,7 +54,7 @@ export const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geoj
                 lineColor = 'rgb(0,92,230)';
                 break;
             case 'Tree House Trail':
-                lineColor = 'rgb(255,170,255)';
+                lineColor = 'rgb(230,115,0)';
                 break;
             default:
                 lineColor = '#fff';
