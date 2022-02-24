@@ -5,6 +5,7 @@ import { zoomHomeControl, layerControlUI, scaleBarControl} from './mapControls.j
 import { pemaImagery } from './basemaps.js';
 import { hikingTrails } from './hikingTrails.js';
 import { atTrail } from './overlays.js';
+import { changeLayerControlLocation } from './functions.js';
 
 /*** Map & Controls ***/
 const map = L.map('map', {
@@ -24,3 +25,6 @@ pemaImagery.addTo(map);
 // overlays
 atTrail.addTo(map);
 hikingTrails.addTo(map);
+
+// change where layer widget is located
+changeLayerControlLocation();

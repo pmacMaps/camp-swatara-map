@@ -30,11 +30,19 @@ body {
 .navbar-default .navbar-brand:focus,
 .navbar-default .navbar-nav>li>a:focus {
     color: #FFFF00;
-    
 }
 
 .navbar .btn-default:hover {
     background-color: #FFFF00;
+}
+
+/*** Basemap Selector Modal ***/
+#basemapModal div.modal-body {
+    min-height: 225px;
+}
+
+#basemapModal div.modal-body p {
+    margin-bottom: 25px;
 }
 
 /*** Leaflet Controls ***/
@@ -67,12 +75,12 @@ body {
 }
 
 /* 767px */
-@media screen and (max-width: 767px) {    
+@media screen and (max-width: 767px) {
     .navbar-toggle,
     .navbar-default .navbar-toggle:focus{
         background: #fff;
     }
-    
+
     .navbar-default .navbar-toggle:active {
         background-color: #FFFF00;
     }
