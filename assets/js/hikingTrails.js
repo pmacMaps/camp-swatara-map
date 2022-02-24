@@ -6,7 +6,6 @@ import { windowWidth } from './constants.js';
 export const hikingTrails = new L.GeoJSON.AJAX('assets/geodata/hikingTrails.geojson', {
     style: function(feature) {
         const lineWeight = 5;
-        const dashArrayType = '5, 8';
         let lineColor;
 
         // custom color for each trail
