@@ -1,3 +1,5 @@
+import { esriKey } from './constants.js';
+
 /*** Basemaps ***/
 // PEMA Imagery
 export const pemaImagery = L.esri.tiledMapLayer({
@@ -6,32 +8,24 @@ export const pemaImagery = L.esri.tiledMapLayer({
     attribution: 'Pennsylvania Emergency Management Agency'
 });
 
-// USA Topographic
-const usaTopo = L.esri.tiledMapLayer({
-    url: 'https://services.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer',
-    detectRetina: true,
-    maxZoom: 15,
-    attribution: 'Copyright:© 2013 National Geographic Society, i-cubed'
-});
-
-// USGS Topographic
-const usgsTopo = L.esri.tiledMapLayer({
-    url: 'https://basemap.nationalmap.gov/arcgis/rest/services/USGSTopo/MapServer',
-    detectRetina: true,
-    maxZoom: 15,
-    attribution: 'USGS The National Map',
-});
-
 // Open Topographic Map
 const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
     detectRetina: true,
     attribution: 'OpenTopoMap'
 });
 
+// Esri Topographic Map
+const esriTopo1 =   L.esri.Vector.vectorBasemapLayer('ArcGIS:Topographic:Base', {
+    apikey: esriKey
+});
+const esriTopo2 =   L.esri.Vector.vectorBasemapLayer('ArcGIS:Topographic', {
+    apikey: esriKey
+});
+const esriTopo = L.layerGroup([esriTopo1, esriTopo2]);
+
 // basemap layers for control
 export const basemapLayers = {
     "Satellite Imagery": pemaImagery,
-    "Historic Topographic": usaTopo,
-    "USGS Topopgrahic": usgsTopo,
-    "Open Topo Maps (metric)": openTopoMap
+    "Topographic (Esri)": esriTopo,
+    "Topographic (metric)": openTopoMap
 };

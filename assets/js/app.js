@@ -4,7 +4,7 @@ import { initZoom, homeCoords} from './constants.js';
 import { zoomHomeControl, layerControlUI, scaleBarControl} from './mapControls.js';
 import { pemaImagery } from './basemaps.js';
 import { hikingTrails } from './hikingTrails.js';
-import { atTrail } from './overlays.js';
+import { atTrail, usgsContours } from './overlays.js';
 import { changeLayerControlLocation } from './functions.js';
 
 /*** Map & Controls ***/
@@ -25,6 +25,7 @@ pemaImagery.addTo(map);
 // overlays
 atTrail.addTo(map);
 hikingTrails.addTo(map);
+usgsContours.addTo(map);
 
 // change where layer widget is located
 changeLayerControlLocation();
