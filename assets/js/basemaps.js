@@ -1,31 +1,23 @@
+/*** Basemaps for Webmap ***/
+// esri api key
 import { esriKey } from './constants.js';
 
-/*** Basemaps ***/
 // PEMA Imagery
+// initial basemap on map load
 export const pemaImagery = L.esri.tiledMapLayer({
     url: ' https://imagery.pasda.psu.edu/arcgis/rest/services/pasda/PEMAImagery2018_2020/MapServer',
     detectRetina: true,
     attribution: 'Pennsylvania Emergency Management Agency'
 });
 
-// Open Topographic Map
-const openTopoMap = L.tileLayer('https://a.tile.opentopomap.org/{z}/{x}/{y}.png', {
-    detectRetina: true,
-    attribution: 'OpenTopoMap'
-});
-
-// Esri Topographic Map
-const esriTopo1 =   L.esri.Vector.vectorBasemapLayer('ArcGIS:Topographic:Base', {
+// Esri Open Street Map Terrain
+const esriOsmTerrain = L.esri.Vector.vectorBasemapLayer('OSM:StandardRelief', {
     apikey: esriKey
 });
-const esriTopo2 =   L.esri.Vector.vectorBasemapLayer('ArcGIS:Topographic', {
-    apikey: esriKey
-});
-const esriTopo = L.layerGroup([esriTopo1, esriTopo2]);
 
 // basemap layers for control
+// used to hydrate layer control widget
 export const basemapLayers = {
     "Satellite Imagery": pemaImagery,
-    "Topographic (Esri)": esriTopo,
-    "Topographic (metric)": openTopoMap
+    "Topographic": esriOsmTerrain,
 };
