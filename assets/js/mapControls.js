@@ -21,3 +21,5 @@ export const scaleBarControl = L.control.betterscale({
     updateWhenIdle: true,
     position: 'bottomleft'
 });
+// locate control
+export const locateControl = L.control.locate();
