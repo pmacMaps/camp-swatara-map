@@ -1,0 +1,87 @@
+/*** General Properties ***/
+html,
+body,
+#map {
+    width: 100%;
+    height: 100%;
+}
+
+/* fix nav hanging over map */
+body {
+    padding-top: 51px;
+}
+
+/*** Nav ***/
+.navbar-default {
+    background-color: #52655B;
+}
+
+.navbar-default .navbar-brand,
+.navbar-default .navbar-nav > li > a {
+    color: #fff;
+    -webkit-transition: color 0.3s ease-in;
+    -moz-transition: color 0.3s ease-in;
+    -o-transition: color 0.3s ease-in;
+    transition: color 0.3s ease-in;
+}
+
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default .navbar-brand:focus,
+.navbar-default .navbar-nav>li>a:focus {
+    color: #FFFF00;
+}
+
+.navbar .btn-default:hover {
+    background-color: #FFFF00;
+}
+
+/*** Basemap Selector Modal ***/
+#basemapModal div.modal-body {
+    min-height: 225px;
+}
+
+#basemapModal div.modal-body p {
+    margin-bottom: 25px;
+}
+
+/*** Leaflet Controls ***/
+.leaflet-control-locate a {
+    color: #000;
+}
+
+/*** Layer Tooltip ***/
+.feat-tooltip {
+    font-weight: bold;
+}
+
+/*** Layer Popup ***/
+.feat-popup {
+    font-size: 1.1em;
+    font-family: Tahoma, Verdana, Segoe, sans-serif;
+}
+
+.feat-popup h3 {
+    font-size: 1.25em;
+    text-align: center;
+}
+
+/*** Media Query ***/
+/* 314px */
+@media screen and (max-width: 314px) {
+    body {
+        padding-top: 100px;
+    }
+}
+
+/* 767px */
+@media screen and (max-width: 767px) {
+    .navbar-toggle,
+    .navbar-default .navbar-toggle:focus{
+        background: #fff;
+    }
+
+    .navbar-default .navbar-toggle:active {
+        background-color: #FFFF00;
+    }
+}
