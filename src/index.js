@@ -7,6 +7,7 @@ import 'bootstrap';
 import { map } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 // app modules
+import './ui.js';
 import { initZoom, homeCoords} from './constants.js';
 import { zoomHomeControl, layerControlUI, scaleBarControl, locateControl} from './mapControls.js';
 import { imageryWithLabels } from './basemaps.js';
