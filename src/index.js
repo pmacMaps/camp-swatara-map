@@ -9,7 +9,7 @@ import 'leaflet/dist/leaflet.css';
 // app modules
 import { initZoom, homeCoords} from './constants.js';
 import { zoomHomeControl, layerControlUI, scaleBarControl, locateControl} from './mapControls.js';
-import { pemaImagery } from './basemaps.js';
+import { imageryWithLabels } from './basemaps.js';
 import { hikingTrails } from './hikingTrails.js';
 import { atTrail, usgsContours } from './overlays.js';
 import { changeLayerControlLocation } from './functions.js';
@@ -30,7 +30,7 @@ scaleBarControl.addTo(webmap);
 locateControl.addTo(webmap);
 
 // basemap
-pemaImagery.addTo(webmap);
+imageryWithLabels.addTo(webmap);
 
 // overlays
 atTrail.addTo(webmap);
