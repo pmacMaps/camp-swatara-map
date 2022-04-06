@@ -11,34 +11,36 @@ body {
     padding-top: 51px;
 }
 
-/*** Nav ***/
-.navbar-default {
+/*** Header & Nav ***/
+header {
+    max-height: 51px;
+}
+
+header h1 {
+    color: #fff;
+}
+
+.navbar {
     background-color: #52655B;
 }
 
-.navbar-default .navbar-brand,
-.navbar-default .navbar-nav > li > a {
-    color: #fff;
-    -webkit-transition: color 0.3s ease-in;
-    -moz-transition: color 0.3s ease-in;
-    -o-transition: color 0.3s ease-in;
-    transition: color 0.3s ease-in;
+nav ul.dropdown.dropdown-menu {
+    right: 10px;
+    left: inherit;
 }
 
-.navbar-default .navbar-brand:hover,
-.navbar-default .navbar-nav>li>a:hover,
-.navbar-default .navbar-brand:focus,
-.navbar-default .navbar-nav>li>a:focus {
-    color: #FFFF00;
-}
-
-.navbar .btn-default:hover {
-    background-color: #FFFF00;
+nav button.dropdown-toggle {
+    color: #000;
+    background-color: #fff;
+    padding: 0.25em;
+    margin-top: -10px;
 }
 
 /*** Basemap Selector Modal ***/
-#basemapModal div.modal-body {
+div.modal-body {
     min-height: 225px;
+    max-height: 350px;
+    overflow-y: auto;
 }
 
 #basemapModal div.modal-body p {
@@ -76,12 +78,4 @@ body {
 
 /* 767px */
 @media screen and (max-width: 767px) {
-    .navbar-toggle,
-    .navbar-default .navbar-toggle:focus{
-        background: #fff;
-    }
-
-    .navbar-default .navbar-toggle:active {
-        background-color: #FFFF00;
-    }
 }
