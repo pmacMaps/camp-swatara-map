@@ -33934,20 +33934,27 @@ var EsriLeaflet = __webpack_require__(214);
 /*** Basemaps for Webmap ***/
 
 
+
 // esri api key
 
 
 // PEMA Imagery
-// initial basemap on map load
-// L.esri.tiledMapLayer
 const pemaImagery = (0,EsriLeaflet.tiledMapLayer)({
     url: ' https://imagery.pasda.psu.edu/arcgis/rest/services/pasda/PEMAImagery2018_2020/MapServer',
     detectRetina: true,
     attribution: 'Pennsylvania Emergency Management Agency'
 });
 
+// Labels layer from Esri
+const esriLabels = (0,esri_leaflet_vector_debug.vectorBasemapLayer)('ArcGIS:Imagery:Labels', {
+    apikey: esriKey
+ });
+
+// Group layer combing PEMA imagery and Esri labels
+// initial basemap on map load
+const imageryWithLabels = (0,leaflet_src.layerGroup)([pemaImagery, esriLabels]);
+
 // Esri Open Street Map Terrain
-// L.esri.Vector.vectorBasemapLayer
 const esriOsmTerrain = (0,esri_leaflet_vector_debug.vectorBasemapLayer)('OSM:StandardRelief', {
     apikey: esriKey
 });
@@ -33955,7 +33962,7 @@ const esriOsmTerrain = (0,esri_leaflet_vector_debug.vectorBasemapLayer)('OSM:Sta
 // basemap layers for control
 // used to hydrate layer control widget
 const basemapLayers = {
-    "Satellite Imagery": pemaImagery,
+    "Satellite Imagery": imageryWithLabels,
     "Topographic": esriOsmTerrain,
 };
 ;// CONCATENATED MODULE: ./src/mapControls.js
@@ -34142,7 +34149,7 @@ scaleBarControl.addTo(webmap);
 locateControl.addTo(webmap);
 
 // basemap
-pemaImagery.addTo(webmap);
+imageryWithLabels.addTo(webmap);
 
 // overlays
 atTrail.addTo(webmap);
