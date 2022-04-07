@@ -6,6 +6,13 @@ body,
     height: 100%;
 }
 
+header h1,
+div.modal-header,
+div.modal-header > button > span,
+div.modal-footer {
+    color: #fff;
+}
+
 /* fix nav hanging over map */
 body {
     padding-top: 51px;
@@ -17,10 +24,12 @@ header {
 }
 
 header h1 {
-    color: #fff;
+    margin-top: -5px;
 }
 
-.navbar {
+.navbar,
+div.modal-header,
+div.modal-footer {
     background-color: #52655B;
 }
 
@@ -36,11 +45,32 @@ nav button.dropdown-toggle {
     margin-top: -10px;
 }
 
-/*** Basemap Selector Modal ***/
+/*** Modals ***/
 div.modal-body {
     min-height: 225px;
     max-height: 350px;
     overflow-y: auto;
+}
+
+div.modal-header > button,
+div.modal-header > button.close:not(:disabled):not(.disabled):hover,
+div.modal-header > button > span,
+div.modal-header > button > span:hover {
+    opacity: 1;
+}
+
+div.modal-header > button > span:hover {
+    color: #FFFF00;
+    text-shadow: none;
+}
+
+div.modal-footer button {
+    background-color: #000;
+}
+
+div.modal-footer button:hover {
+    background-color: #FFFF00;
+    color: #000;
 }
 
 #basemapModal div.modal-body p {
