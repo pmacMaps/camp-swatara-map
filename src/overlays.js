@@ -1,7 +1,12 @@
-// Esri Leaflet
-import { featureLayer, dynamicMapLayer } from 'esri-leaflet';
+import { vectorTileLayer } from 'esri-leaflet-vector';
+import { featureLayer } from 'esri-leaflet';
 import { setPopupMaxWidth } from './functions.js';
 import { windowWidth } from './constants.js';
+
+// Esri beta vector elevation contours
+export const esriContours = vectorTileLayer('51ca3ce6a16d4080ad955dacd6dd2fe2', {
+    pane: 'contours'
+});
 
 // Appalachian Trail
 export const atTrail = featureLayer({
@@ -20,9 +25,3 @@ atTrail.bindPopup(function(evt) {
     const popupContent = '<div class="feat-popup"><h3>Appalachian Trail</h3></div>';
     return L.Util.template(popupContent);
 }, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)});
-
-// USGS elevation contours
-export const usgsContours = dynamicMapLayer({
-    url: 'https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer',
-    layers: [19]
-});
