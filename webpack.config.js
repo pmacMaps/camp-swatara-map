@@ -55,5 +55,6 @@ module.exports = {
   },
   externals: {
     jquery: 'jQuery',
+    bootstrap: 'bootstrap'
   }
 };

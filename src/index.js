@@ -1,7 +1,6 @@
 "use strict";
 
 // Bootstrap
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap';
 // Leaflet
 import { map } from 'leaflet';
