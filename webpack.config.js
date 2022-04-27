@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require("webpack");
 const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -33,10 +32,6 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin(),
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery"
-    }),
     new CopyPlugin({
       patterns: [
         {
@@ -57,5 +52,8 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'build'),
     clean: true
+  },
+  externals: {
+    jquery: 'jQuery',
   }
 };
