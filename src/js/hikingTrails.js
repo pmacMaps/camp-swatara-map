@@ -3,7 +3,7 @@ import { reduceNumberDecimals, setPopupMaxWidth } from './functions.js';
 import { windowWidth } from './constants.js';
 
 // hiking trails data file
-const data = require('./data/hikingTrails.geojson');
+const data = require('../data/hikingTrails.geojson');
 
 // Hiking Trails
 export const hikingTrails = geoJson(data, {

@@ -1,20 +1,16 @@
 "use strict";
 
-// Bootstrap
 import 'bootstrap';
 // Leaflet
 import { map } from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 // app modules
 import './ui.js';
 import { initZoom, homeCoords} from './constants.js';
 import { zoomHomeControl, layerControlUI, scaleBarControl, locateControl} from './mapControls.js';
 import { imageryWithLabels } from './basemaps.js';
-import { hikingTrails } from './hikingTrails.js';
+//import { hikingTrails } from './hikingTrails.js';
 import { atTrail, usgsContours } from './overlays.js';
 import { changeLayerControlLocation } from './functions.js';
-// custom styles
-import './css/style.css';
 
 /*** Map & Controls ***/
 const webmap = map('map', {
@@ -34,7 +30,7 @@ imageryWithLabels.addTo(webmap);
 
 // overlays
 atTrail.addTo(webmap);
-hikingTrails.addTo(webmap);
+//hikingTrails.addTo(webmap);
 usgsContours.addTo(webmap);
 
 // change where layer widget is located

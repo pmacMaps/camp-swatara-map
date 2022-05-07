@@ -1,3 +1,11 @@
+/* imports */
+@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/leaflet/dist/leaflet.css';
+@import '../node_modules/leaflet.zoomhome/src/css/leaflet.zoomhome.css';
+@import '../node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css';
+@import '../node_modules/leaflet-betterscale/L.Control.BetterScale.css';
+
 /*** General Properties ***/
 html,
 body,

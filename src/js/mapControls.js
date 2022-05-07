@@ -1,9 +1,5 @@
-import 'font-awesome/css/font-awesome.min.css';
 import 'leaflet.zoomhome/src/js/leaflet.zoomhome.js';
-import 'leaflet.zoomhome/src/css/leaflet.zoomhome.css';
-import 'leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 import 'leaflet.locatecontrol/dist/L.Control.Locate.min.js';
-import 'leaflet-betterscale/L.Control.BetterScale.css';
 import 'leaflet-betterscale/L.Control.BetterScale.js';
 import { homeCoords, initZoom} from './constants.js';
 import { basemapLayers } from './basemaps.js';
