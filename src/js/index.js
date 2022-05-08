@@ -8,7 +8,7 @@ import './ui.js';
 import { initZoom, homeCoords} from './constants.js';
 import { zoomHomeControl, layerControlUI, scaleBarControl, locateControl} from './mapControls.js';
 import { imageryWithLabels } from './basemaps.js';
-//import { hikingTrails } from './hikingTrails.js';
+import { hikingTrails } from './hikingTrails.js';
 import { atTrail, usgsContours } from './overlays.js';
 import { changeLayerControlLocation } from './functions.js';
 
@@ -30,7 +30,7 @@ imageryWithLabels.addTo(webmap);
 
 // overlays
 atTrail.addTo(webmap);
-//hikingTrails.addTo(webmap);
+hikingTrails.addTo(webmap);
 usgsContours.addTo(webmap);
 
 // change where layer widget is located

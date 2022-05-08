@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/pmacMaps/camp-swatara-map#readme",
   "devDependencies": {
-    "parcel": "^2.5.0"
+    "parcel": "^2.5.0",
+    "parcel-transformer-geojson": "^0.0.4"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
