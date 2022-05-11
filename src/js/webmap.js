@@ -3,7 +3,7 @@ import MapView from "@arcgis/core/views/MapView";
 import { pemaImagery } from './basemaps.js';
 
 // webmap object
-const webmap = new Map({
+export const webmap = new Map({
     basemap: pemaImagery
 });
 

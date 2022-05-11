@@ -3,9 +3,10 @@
 import 'bootstrap';
 import './ui.js';
 import esriConfig from "@arcgis/core/config";
-import { mapView } from './webmap.js';
+import { mapView, webmap } from './webmap.js';
 // app modules
 import * as mapWidgets from './mapControls.js';
+import * as mapOverlays from './overlays.js';
 ////import { hikingTrails } from './hikingTrails.js';
 //import { atTrail, usgsContours } from './overlays.js';
 //import { changeLayerControlLocation } from './functions.js';
@@ -16,9 +17,9 @@ esriConfig.apiKey = 'AAPK56c13fae1a6d4407a5d392981b9b50d2kwxUZMYHbCl1MyifP-JufC7
 mapView.when(function() {
    mapView.ui.add(mapWidgets.homeWidget, "top-left");
    mapView.ui.add(mapWidgets.locateWidget, "top-left");
-   //mapView.ui.add(mapWidgets.mapLegend, '');
    mapView.ui.add(mapWidgets.scalebar, "bottom-left");
    mapView.ui.add(mapWidgets.fullscreenWidget, "top-right");
+   webmap.addMany([mapOverlays.atTrail ,mapOverlays.usgsContours]);
 }, function(error) {
    console.warn(error);
 });
