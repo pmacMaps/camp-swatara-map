@@ -1,37 +1,24 @@
 "use strict";
 
 import 'bootstrap';
-// Leaflet
-import { map } from 'leaflet';
-// app modules
 import './ui.js';
-import { initZoom, homeCoords} from './constants.js';
-import { zoomHomeControl, layerControlUI, scaleBarControl, locateControl} from './mapControls.js';
-import { imageryWithLabels } from './basemaps.js';
-import { hikingTrails } from './hikingTrails.js';
-import { atTrail, usgsContours } from './overlays.js';
-import { changeLayerControlLocation } from './functions.js';
+import esriConfig from "@arcgis/core/config";
+import { mapView } from './webmap.js';
+// app modules
+import * as mapWidgets from './mapControls.js';
+////import { hikingTrails } from './hikingTrails.js';
+//import { atTrail, usgsContours } from './overlays.js';
+//import { changeLayerControlLocation } from './functions.js';
 
-/*** Map & Controls ***/
-const webmap = map('map', {
-   center: homeCoords,
-   zoom: initZoom,
-   zoomControl: false
+// api key
+esriConfig.apiKey = 'AAPK56c13fae1a6d4407a5d392981b9b50d2kwxUZMYHbCl1MyifP-JufC7lrC9K2TvvL93oR25h20j0cjvoAro30x-p0O27jPwS';
+
+mapView.when(function() {
+   mapView.ui.add(mapWidgets.homeWidget, "top-left");
+   mapView.ui.add(mapWidgets.locateWidget, "top-left");
+   //mapView.ui.add(mapWidgets.mapLegend, '');
+   mapView.ui.add(mapWidgets.scalebar, "bottom-left");
+   mapView.ui.add(mapWidgets.fullscreenWidget, "top-right");
+}, function(error) {
+   console.warn(error);
 });
-
-// add map controls
-zoomHomeControl.addTo(webmap);
-layerControlUI.addTo(webmap);
-scaleBarControl.addTo(webmap);
-locateControl.addTo(webmap);
-
-// basemap
-imageryWithLabels.addTo(webmap);
-
-// overlays
-atTrail.addTo(webmap);
-hikingTrails.addTo(webmap);
-usgsContours.addTo(webmap);
-
-// change where layer widget is located
-changeLayerControlLocation();

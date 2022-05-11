@@ -26,15 +26,9 @@
     "parcel-transformer-geojson": "^0.0.4"
   },
   "dependencies": {
+    "@arcgis/core": "^4.23.7",
     "@popperjs/core": "^2.11.5",
     "bootstrap": "^4.6.1",
-    "esri-leaflet": "^3.0.8",
-    "esri-leaflet-vector": "^3.1.2",
-    "font-awesome": "^4.7.0",
-    "jquery": "^3.6.0",
-    "leaflet": "^1.7.1",
-    "leaflet-betterscale": "^1.0.0",
-    "leaflet.locatecontrol": "^0.76.0",
-    "leaflet.zoomhome": "^1.0.0"
+    "jquery": "^3.6.0"
   }
 }

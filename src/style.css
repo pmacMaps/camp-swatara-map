@@ -1,15 +1,11 @@
 /* imports */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../node_modules/font-awesome/css/font-awesome.min.css';
-@import '../node_modules/leaflet/dist/leaflet.css';
-@import '../node_modules/leaflet.zoomhome/src/css/leaflet.zoomhome.css';
-@import '../node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css';
-@import '../node_modules/leaflet-betterscale/L.Control.BetterScale.css';
+@import 'https://js.arcgis.com/4.23/esri/themes/light/main.css';
 
 /*** General Properties ***/
 html,
 body,
-#map {
+#webmap {
     width: 100%;
     height: 100%;
 }

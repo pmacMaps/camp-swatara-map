@@ -1,31 +1,32 @@
-import 'leaflet.zoomhome/src/js/leaflet.zoomhome.js';
-import 'leaflet.locatecontrol/dist/L.Control.Locate.min.js';
-import 'leaflet-betterscale/L.Control.BetterScale.js';
-import { homeCoords, initZoom} from './constants.js';
-import { basemapLayers } from './basemaps.js';
+import Home from "@arcgis/core/widgets/Home";
+import Locate from "@arcgis/core/widgets/Locate";
+import Legend from "@arcgis/core/widgets/Legend";
+import ScaleBar from "@arcgis/core/widgets/ScaleBar";
+import Fullscreen from "@arcgis/core/widgets/Fullscreen";
+import { mapView } from './webmap.js';
 
-// zoom and full extent control
-export const zoomHomeControl = L.Control.zoomHome({
-    position: 'topleft',
-    zoomHomeTitle: 'Full map extent',
-    homeCoordinates: homeCoords,
-    homeZoom: initZoom,
-    maxZoom: 17
+export const homeWidget = new Home({
+    label: 'Default Extent',
+    view: mapView
 });
 
-// Layer Control
-export const layerControlUI = L.control.layers(basemapLayers, null, {
-    collapsed: false
+export const locateWidget = new Locate({
+    scale: 10,
+    label: 'Find My Location',
+    view: mapView
 });
 
-// scale bar control
-export const scaleBarControl = L.control.betterscale({
-    maxWidth: 200,
-    metric: false,
-    imperial: true,
-    updateWhenIdle: true,
-    position: 'bottomleft'
+export const mapLegend = new Legend({
+    label: 'Map Legend',
+    container: 'mapLegendContainer',
+    basemapLegendVisible: true,
+    view: mapView
 });
 
-// locate control
-export const locateControl = L.control.locate();
+export const scalebar = new ScaleBar({
+    view: mapView
+});
+
+export const fullscreenWidget = new Fullscreen({
+    view: mapView
+});
