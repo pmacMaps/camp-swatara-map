@@ -22,9 +22,5 @@ atTrail.bindPopup(function(evt) {
 export const usgsContours = new MapImageLayer({
     title: 'Elevation Contours',
     copyright: 'USGS',
-    url: 'https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer',
-    sublayers: [{
-        id: 19,
-        legendEnabled: true // not working
-    }]
+    url: 'https://carto.nationalmap.gov/arcgis/rest/services/contours/MapServer'
 });

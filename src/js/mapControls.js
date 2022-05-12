@@ -4,6 +4,7 @@ import Legend from "@arcgis/core/widgets/Legend";
 import ScaleBar from "@arcgis/core/widgets/ScaleBar";
 import Fullscreen from "@arcgis/core/widgets/Fullscreen";
 import { mapView } from './webmap.js';
+import * as mapOverlays from './overlays.js';
 
 export const homeWidget = new Home({
     label: 'Default Extent',
@@ -19,7 +20,18 @@ export const locateWidget = new Locate({
 export const mapLegend = new Legend({
     label: 'Map Legend',
     container: 'mapLegendContainer',
-    basemapLegendVisible: true,
+    basemapLegendVisible: false,
+    hideLayersNotInCurrentView: true,
+    layerInfos: [
+        {
+            layer: mapOverlays.atTrail,
+            title: 'Appalachian Trail'
+        },
+        {
+            layer: mapOverlays.usgsContours,
+            title: 'Elevation Contours (USGS)'
+        }
+    ],
     view: mapView
 });
 
