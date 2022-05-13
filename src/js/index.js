@@ -7,7 +7,7 @@ import { mapView, webmap } from './webmap.js';
 // app modules
 import * as mapWidgets from './mapControls.js';
 import * as mapOverlays from './overlays.js';
-////import { hikingTrails } from './hikingTrails.js';
+import { hikingTrails } from './hikingTrails.js';
 //import { atTrail, usgsContours } from './overlays.js';
 //import { changeLayerControlLocation } from './functions.js';
 
@@ -15,7 +15,7 @@ import * as mapOverlays from './overlays.js';
 esriConfig.apiKey = 'AAPK56c13fae1a6d4407a5d392981b9b50d2kwxUZMYHbCl1MyifP-JufC7lrC9K2TvvL93oR25h20j0cjvoAro30x-p0O27jPwS';
 
 mapView.when(function() {
-   webmap.addMany([mapOverlays.atTrail ,mapOverlays.usgsContours]);
+   webmap.addMany([mapOverlays.atTrail ,mapOverlays.usgsContours, hikingTrails]);
    mapView.ui.add(mapWidgets.homeWidget, "top-left");
    mapView.ui.add(mapWidgets.locateWidget, "top-left");
    mapView.ui.add(mapWidgets.scalebar, "bottom-left");

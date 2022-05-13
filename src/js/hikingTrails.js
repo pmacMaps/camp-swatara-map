@@ -1,11 +1,37 @@
-import { geoJson } from 'leaflet';
-import { reduceNumberDecimals, setPopupMaxWidth } from './functions.js';
-import { windowWidth } from './constants.js';
-
+import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
 // hiking trails data file
 const data = require('../data/hikingTrails.geojson');
 
+// blob object for geojson file
+const geojsonBlob = new Blob([JSON.stringify(data)], {
+    type: "application/json"
+});
+// URL reference to geojson blob
+const geojsonUrl = URL.createObjectURL(geojsonBlob);
+
+export const hikingTrails = new GeoJSONLayer({
+    copyright: 'Camp Swatara',
+    url: geojsonUrl,
+    popupTemplate: {
+        title: '{Name}',
+        content: [{
+            type: 'fields',
+            fieldInfos: [
+                {
+                    fieldName: 'Blaze',
+                    label: 'Blaze Color'
+                },
+                {
+                    fieldName: 'Miles',
+                    label: 'Length (miles)'
+                }
+            ]
+        }]
+    }
+});
+
 // Hiking Trails
+/*
 export const hikingTrails = geoJson(data, {
     style: function(feature) {
         const lineWeight = 5;
@@ -82,3 +108,4 @@ hikingTrails.bindPopup(function(evt) {
 
     return L.Util.template(popupContent, evt.feature.properties);
 }, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)});
+*/
