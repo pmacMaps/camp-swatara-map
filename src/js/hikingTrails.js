@@ -14,6 +14,13 @@ export const hikingTrails = new GeoJSONLayer({
     url: geojsonUrl,
     popupTemplate: {
         title: '{Name}',
+        expressionInfos: [
+            {
+                name: 'trail-length',
+                expression: 'Round($feature.Miles, 2)',
+                title: 'Length (miles)'
+            }
+        ],
         content: [{
             type: 'fields',
             fieldInfos: [
@@ -22,8 +29,7 @@ export const hikingTrails = new GeoJSONLayer({
                     label: 'Blaze Color'
                 },
                 {
-                    fieldName: 'Miles',
-                    label: 'Length (miles)'
+                    fieldName: 'expression/trail-length'
                 }
             ]
         }]
@@ -93,19 +99,4 @@ export const hikingTrails = geoJson(data, {
         }
      }
 });
-
-// Add popup to Hiking Trails
-hikingTrails.bindPopup(function(evt) {
-    const trailLength = reduceNumberDecimals(evt.feature.properties.Miles);
-
-    let popupContent = '<div class="feat-popup">';
-    popupContent += '<h3>{Name}</h3><hr />';
-    popupContent += '<ul>';
-    popupContent += '<li>Blaze: {Blaze}</li>';
-    popupContent += `<li>Length: ${trailLength}-miles</li>`;
-    popupContent += '</ul>';
-    popupContent += '</div>';
-
-    return L.Util.template(popupContent, evt.feature.properties);
-}, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)});
 */

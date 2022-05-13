@@ -14,3 +14,12 @@ export const mapView = new MapView({
     center: [-76.362, 40.501],
     zoom: 8
 });
+
+// allow for dockable popups
+mapView.popup = {
+    dockEnabled: true,
+    dockOptions: {
+        buttonEnabled: true,
+        breakpoint: true
+    }
+};
