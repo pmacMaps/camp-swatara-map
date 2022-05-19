@@ -3,6 +3,7 @@
 import 'bootstrap';
 // Leaflet
 import { map } from 'leaflet';
+import 'leaflet-fullscreen';
 // app modules
 import './ui.js';
 import { initZoom, homeCoords} from './constants.js';
@@ -16,7 +17,11 @@ import { changeLayerControlLocation } from './functions.js';
 const webmap = map('map', {
    center: homeCoords,
    zoom: initZoom,
-   zoomControl: false
+   zoomControl: false,
+   fullscreenControl: {
+      position: 'topright'
+   }
+
 });
 
 // add map controls

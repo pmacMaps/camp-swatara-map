@@ -5,6 +5,7 @@
 @import '../node_modules/leaflet.zoomhome/src/css/leaflet.zoomhome.css';
 @import '../node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css';
 @import '../node_modules/leaflet-betterscale/L.Control.BetterScale.css';
+@import '../node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css';
 
 /*** General Properties ***/
 html,

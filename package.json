@@ -34,6 +34,7 @@
     "jquery": "^3.6.0",
     "leaflet": "^1.8.0",
     "leaflet-betterscale": "^1.0.0",
+    "leaflet-fullscreen": "^1.0.2",
     "leaflet.locatecontrol": "^0.76.0",
     "leaflet.zoomhome": "^1.0.0"
   }
