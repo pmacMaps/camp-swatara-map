@@ -1,22 +1,34 @@
-
 import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import MapImageLayer from "@arcgis/core/layers/MapImageLayer";
 
 export const atTrail = new FeatureLayer({
     title: 'Appalachian Trail',
     copyright: 'Appalachian Trail Conservancy',
-    outFields: ['LENGTH_MI', 'SUPPLIER', 'TRAIL_CLUB'],
-    url: 'https://mapservices.pasda.psu.edu/server/rest/services/pasda/AppalachianTrail/MapServer/0'
+    outFields: ['LENGTH_MI', 'TRAIL_CLUB'],
+    url: 'https://mapservices.pasda.psu.edu/server/rest/services/pasda/AppalachianTrail/MapServer/0',
+    popupTemplate: {
+        title: 'Appalachian Trail',
+        expressionInfos: [
+            {
+                name: 'trail-length',
+                expression: 'Round($feature.LENGTH_MI, 2)',
+                title: 'Section Length (miles)'
+            }
+        ],
+        content: [{
+            type: 'fields',
+            fieldInfos: [
+                {
+                    fieldName: 'TRAIL_CLUB',
+                    label: 'Trail Club'
+                },
+                {
+                    fieldName: 'expression/trail-length'
+                }
+            ]
+        }]
+    }
 });
-
-
-// add popup to Appalachian Trail
-/*
-atTrail.bindPopup(function(evt) {
-    const popupContent = '<div class="feat-popup"><h3>Appalachian Trail</h3></div>';
-    return L.Util.template(popupContent);
-}, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)});
-*/
 
 // USGS elevation contours
 export const usgsContours = new MapImageLayer({
