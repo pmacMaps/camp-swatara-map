@@ -6,6 +6,15 @@ export const atTrail = new FeatureLayer({
     copyright: 'Appalachian Trail Conservancy',
     outFields: ['LENGTH_MI', 'TRAIL_CLUB'],
     url: 'https://mapservices.pasda.psu.edu/server/rest/services/pasda/AppalachianTrail/MapServer/0',
+    renderer: {
+        type: 'simple',
+        symbol: {
+            type: 'simple-line',
+            color: '#9c4040',
+            width: 5,
+            style: 'solid'
+        }
+    },
     popupTemplate: {
         title: 'Appalachian Trail',
         expressionInfos: [
