@@ -1,17 +1,24 @@
 import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
-// hiking trails data file
-const data = require('../data/hikingTrails.geojson');
 
+// hiking trails data file
+// TODO: define json or geojson transformer to load geojson file from local system
+//const data = require('../data/hikingTrails.geojson');
+// use GitHub hosted geojson data for time being
+const data = 'https://raw.githubusercontent.com/pmacMaps/camp-swatara-map/main/src/data/hikingTrails.geojson';
+
+// codeblock for creating geojson layer from local source file
 // blob object for geojson file
+/*
 const geojsonBlob = new Blob([JSON.stringify(data)], {
     type: "application/json"
 });
 // URL reference to geojson blob
 const geojsonUrl = URL.createObjectURL(geojsonBlob);
+*/
 
 export const hikingTrails = new GeoJSONLayer({
     copyright: 'Camp Swatara',
-    url: geojsonUrl,
+    url: data,
     popupTemplate: {
         title: '{Name}',
         expressionInfos: [
