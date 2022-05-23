@@ -1,6 +1,4 @@
 {
   "extends": "@parcel/config-default",
-  "transformers": {
-    "*.geojson": ["parcel-transformer-geojson"]
-  }
+  "bundler": "@parcel/bundler-experimental"
 }

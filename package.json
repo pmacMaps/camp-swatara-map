@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/pmacMaps/camp-swatara-map#readme",
   "devDependencies": {
-    "parcel": "^2.5.0",
-    "parcel-transformer-geojson": "^0.0.4"
+    "@parcel/bundler-experimental": "^2.5.1-nightly.2719",
+    "@parcel/core": "^2.0.0-nightly.1094",
+    "parcel": "^2.0.0-nightly.1094"
   },
   "dependencies": {
     "@arcgis/core": "^4.23.7",
