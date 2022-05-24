@@ -1,26 +1,15 @@
-import GeoJSONLayer from "@arcgis/core/layers/GeoJSONLayer";
+import FeatureLayer from "@arcgis/core/layers/FeatureLayer";
 import Color from "@arcgis/core/Color";
 
-// hiking trails data file
-// TODO: define json or geojson transformer to load geojson file from local system
-//const data = require('../data/hikingTrails.geojson');
-// use GitHub hosted geojson data for time being
-const data = 'https://raw.githubusercontent.com/pmacMaps/camp-swatara-map/main/src/data/hikingTrails.geojson';
-
-// codeblock for creating geojson layer from local source file
-// blob object for geojson file
-/*
-const geojsonBlob = new Blob([JSON.stringify(data)], {
-    type: "application/json"
-});
-// URL reference to geojson blob
-const geojsonUrl = URL.createObjectURL(geojsonBlob);
-*/
-
+// symbology for hiking trails
 const trailsRenderer = {
     type: "unique-value",
     field: "Name",
-    defaultSymbol: { type: "simple-line" },
+    defaultSymbol: {
+        type: "simple-line",
+        color: new Color('#fff'),
+        width: "3px"
+    },
     uniqueValueInfos: [
         {
             value: "Boundary Trail",
@@ -43,6 +32,14 @@ const trailsRenderer = {
             symbol: {
             type: "simple-line",
             color: new Color("rgb(0,92,230)"),
+            width: "3px"
+            }
+        },
+        {
+            value: "Charcoal Trail",
+            symbol: {
+            type: "simple-line",
+            color: new Color("rgb(230,0,0)"),
             width: "3px"
             }
         },
@@ -137,9 +134,9 @@ const trailsRenderer = {
     ]
 };
 
-export const hikingTrails = new GeoJSONLayer({
+export const hikingTrails = new FeatureLayer({
     copyright: 'Camp Swatara',
-    url: data,
+    url: 'https://services3.arcgis.com/3SxkE9GPRaAzbnWT/ArcGIS/rest/services/Camp_Swatara_Hiking_Trails/FeatureServer/0',
     popupTemplate: {
         title: '{Name}',
         expressionInfos: [

@@ -11,7 +11,7 @@ export const atTrail = new FeatureLayer({
         symbol: {
             type: 'simple-line',
             color: '#9c4040',
-            width: 5,
+            width: "5px",
             style: 'solid'
         }
     },
