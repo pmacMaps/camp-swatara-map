@@ -8,7 +8,7 @@ const data = require('../data/hikingTrails.geojson');
 // Hiking Trails
 export const hikingTrails = geoJson(data, {
     style: function(feature) {
-        const lineWeight = 5;
+        const lineWeight = 4;
         let lineColor;
 
         // custom color for each trail
