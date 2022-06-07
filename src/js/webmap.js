@@ -1,6 +1,6 @@
 import Map from "@arcgis/core/Map";
 import MapView from "@arcgis/core/views/MapView";
-import { pemaImagery } from './basemaps.js';
+import { pemaImagery, basemapGalleryWidget } from './basemaps.js';
 
 // webmap object
 export const webmap = new Map({
@@ -23,3 +23,5 @@ mapView.popup = {
         breakpoint: true
     }
 };
+
+basemapGalleryWidget.view = mapView;

@@ -4,7 +4,6 @@ import 'bootstrap';
 import './ui.js';
 import esriConfig from "@arcgis/core/config";
 import { mapView, webmap } from './webmap.js';
-// app modules
 import * as mapWidgets from './mapControls.js';
 import * as mapOverlays from './overlays.js';
 import { hikingTrails } from './hikingTrails.js';
