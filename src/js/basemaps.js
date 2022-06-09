@@ -1,7 +1,6 @@
 /*** Basemaps for Webmap ***/
 import Basemap from "@arcgis/core/Basemap";
-import BasemapGallery from "@arcgis/core/widgets/BasemapGallery";
-import LocalBasemapsSource from "@arcgis/core/widgets/BasemapGallery/support/LocalBasemapsSource";
+import BasemapToggle from "@arcgis/core/widgets/BasemapToggle";
 import TileLayer from "@arcgis/core/layers/TileLayer";
 import VectorTileLayer from "@arcgis/core/layers/VectorTileLayer";
 
@@ -21,17 +20,20 @@ export const pemaImagery = new Basemap({
   });
 
 // Esri Open Street Map Terrain
-const esriOsmTerrain = new Basemap({
+const esriTopo = new Basemap({
   title: 'Topographic',
-  url: 'https://www.arcgis.com/sharing/rest/content/items/0d28c37f80f648238e32efce097450f1/resources/styles/root.json'
+  baseLayers: [
+    new TileLayer({
+      url: 'https://basemaps.arcgis.com/arcgis/rest/services/OpenStreetMap_v2/VectorTileServer'
+    })
+  ]
 });
 
-export const basemapGalleryWidget = new BasemapGallery({
+export const basemapToggle = new BasemapToggle({
   container: 'layerControlUI',
-  source: new LocalBasemapsSource({
-    basemaps: [
-      pemaImagery,
-      esriOsmTerrain
-    ]
-   })
+  label: 'Change Basemap',
+  nextBasemap: "osm-streets-relief",
+  visibleElements: {
+    title: true
+  }
 });
