@@ -1,0 +1,53 @@
+body {
+    max-width: 1024px;
+    margin: 0 auto;
+    padding: 1em;
+    font-size: 1.05em;
+    font-family: Verdana, Geneva, sans-serif;
+    line-height: 1.5em;
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.75em;
+    margin-bottom: 1.5em;
+}
+
+a,
+a:visited {
+    color: blue;
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+.link-container {
+    margin-left: 25%;
+    margin-top: 2em;
+}
+
+.link-btn {
+    display: inline-block;
+    padding: 0.5em;
+    background-color: rgb(108, 129, 94);
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.link-btn,
+.link-btn:visited {
+    color: #fff;
+}
+
+.link-btn:first-child {
+    margin-right: 2em;
+    margin-bottom: 2em;
+}
+
+.link-btn:focus,
+.link-btn:hover {
+    background-color: #000;
+}
