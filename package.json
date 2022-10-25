@@ -26,16 +26,16 @@
     "parcel-transformer-geojson": "^0.0.4"
   },
   "dependencies": {
-    "@popperjs/core": "^2.11.5",
-    "bootstrap": "^4.6.1",
+    "@popperjs/core": "^2.11.6",
+    "bootstrap": "^4.6.2",
     "esri-leaflet": "^3.0.8",
-    "esri-leaflet-vector": "^3.1.2",
+    "esri-leaflet-vector": "^4.0.0",
     "font-awesome": "^4.7.0",
-    "jquery": "^3.6.0",
-    "leaflet": "^1.8.0",
+    "jquery": "^3.6.1",
+    "leaflet": "^1.9.2",
     "leaflet-betterscale": "^1.0.0",
     "leaflet-fullscreen": "^1.0.2",
-    "leaflet.locatecontrol": "^0.76.0",
+    "leaflet.locatecontrol": "^0.76.1",
     "leaflet.zoomhome": "^1.0.0"
   }
 }
