@@ -91,6 +91,10 @@ div.modal-footer button:hover {
     color: #000;
 }
 
+div.leaflet-bottom.leaflet-left {
+    bottom: 2em;
+}
+
 /*** Layer Tooltip ***/
 .feat-tooltip {
     font-weight: bold;
