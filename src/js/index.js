@@ -6,13 +6,13 @@ import esriConfig from "@arcgis/core/config";
 import { mapView, webmap } from './webmap.js';
 import * as mapWidgets from './mapControls.js';
 import * as mapOverlays from './overlays.js';
-import { hikingTrails } from './hikingTrails.js';
+import { trails } from './hikingTrails.js';
 
 // api key
 esriConfig.apiKey = 'AAPK56c13fae1a6d4407a5d392981b9b50d2kwxUZMYHbCl1MyifP-JufC7lrC9K2TvvL93oR25h20j0cjvoAro30x-p0O27jPwS';
 
 mapView.when(function() {
-   webmap.addMany([mapOverlays.usgsContours, mapOverlays.atTrail, hikingTrails]);
+   webmap.addMany([mapOverlays.usgsContours, mapOverlays.atTrail, trails]);
    mapView.ui.add(mapWidgets.homeWidget, "top-left");
    mapView.ui.add(mapWidgets.locateWidget, "top-left");
    mapView.ui.add(mapWidgets.scalebar, "bottom-left");

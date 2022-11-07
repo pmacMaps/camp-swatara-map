@@ -134,7 +134,7 @@ const trailsRenderer = {
     ]
 };
 
-export const hikingTrails = new FeatureLayer({
+export const trails = new FeatureLayer({
     copyright: 'Camp Swatara',
     url: 'https://services3.arcgis.com/3SxkE9GPRaAzbnWT/ArcGIS/rest/services/Camp_Swatara_Hiking_Trails/FeatureServer/0',
     popupTemplate: {

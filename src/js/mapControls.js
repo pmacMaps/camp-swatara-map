@@ -5,6 +5,7 @@ import ScaleBar from "@arcgis/core/widgets/ScaleBar";
 import Fullscreen from "@arcgis/core/widgets/Fullscreen";
 import { mapView } from './webmap.js';
 import * as mapOverlays from './overlays.js';
+import { trails } from "./hikingTrails.js";
 
 export const homeWidget = new Home({
     label: 'Default Extent',
@@ -23,6 +24,10 @@ export const mapLegend = new Legend({
     basemapLegendVisible: false,
     hideLayersNotInCurrentView: true,
     layerInfos: [
+        {
+            layer: trails,
+            title: 'Hiking Trails'
+        },
         {
             layer: mapOverlays.atTrail,
             title: 'Appalachian Trail'
