@@ -1,13 +1,14 @@
 // Esri Leaflet
-import { featureLayer, dynamicMapLayer } from 'esri-leaflet';
+import { dynamicMapLayer } from 'esri-leaflet';
 import { setPopupMaxWidth, reduceNumberDecimals } from './functions.js';
 import { windowWidth } from './constants.js';
+import { geoJson } from 'leaflet';
 
-// Appalachian Trail
-export const atTrail = featureLayer({
-    url: 'https://mapservices.pasda.psu.edu/server/rest/services/pasda/AppalachianTrail/MapServer/0',
-    fields: ['LENGTH_MI', 'TRAIL_CLUB'],
-    simplifyFactor: 1,
+// appalachian trail data file
+const data = require('../data/at-trail.geojson');
+
+// Hiking Trails
+export const atTrail = geoJson(data, {
     style: function(feature) {
         return {
             color: '#9c4040',
@@ -21,8 +22,8 @@ atTrail.bindPopup(function(evt) {
     let popupContent = '<div class="feat-popup">';
     popupContent += '<h3>Appalachian Trail</h3>';
     popupContent += '<ul>';
-    popupContent += '<li>Trail Club: {TRAIL_CLUB}</li>';
-    popupContent += `<li>Section Length (miles): ${reduceNumberDecimals(evt.feature.properties.LENGTH_MI)}</li>`;
+    popupContent += '<li>Trail Club: {Trail_Club}</li>';
+    popupContent += `<li>Section Length (feet): ${reduceNumberDecimals(evt.feature.properties.Length_Ft)}</li>`;
     popupContent += '</ul>';
     popupContent+= '</div>';
     return L.Util.template(popupContent, evt.feature.properties);
