@@ -1,6 +1,6 @@
 // Esri Leaflet
 import { dynamicMapLayer } from 'esri-leaflet';
-import { setPopupMaxWidth, reduceNumberDecimals } from './functions.js';
+import { setPopupMaxWidth } from './functions.js';
 import { windowWidth } from './constants.js';
 import { geoJson } from 'leaflet';
 
@@ -21,11 +21,6 @@ export const atTrail = geoJson(data, {
 atTrail.bindPopup(function(evt) {
     let popupContent = '<div class="feat-popup">';
     popupContent += '<h3>Appalachian Trail</h3>';
-    popupContent += '<ul>';
-    popupContent += '<li>Trail Club: {Trail_Club}</li>';
-    popupContent += `<li>Section Length (feet): ${reduceNumberDecimals(evt.feature.properties.Length_Ft)}</li>`;
-    popupContent += '</ul>';
-    popupContent+= '</div>';
     return L.Util.template(popupContent, evt.feature.properties);
 }, {closeOnClick: true, maxWidth: setPopupMaxWidth(windowWidth)}
 );
