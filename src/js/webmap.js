@@ -12,7 +12,7 @@ export const mapView = new MapView({
     container: 'webmap',
     map: webmap,
     center: [-76.362, 40.501],
-    zoom: 8
+    zoom: 15
 });
 
 // allow for dockable popups
