@@ -3,7 +3,7 @@ import { vectorBasemapLayer } from 'esri-leaflet-vector';
 import { tiledMapLayer } from 'esri-leaflet';
 import { layerGroup } from 'leaflet';
 // esri api key
-import { esriKey } from './constants.js';
+import { esriKey } from './apiKey.js';
 
 // PEMA Imagery
 const pemaImagery = tiledMapLayer({
