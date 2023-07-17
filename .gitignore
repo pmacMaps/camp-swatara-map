@@ -4,3 +4,6 @@ node_modules/
 
 # production
 dist/
+
+# api key
+src/js/apiKey.js

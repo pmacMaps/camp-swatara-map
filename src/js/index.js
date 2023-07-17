@@ -7,9 +7,10 @@ import { mapView, webmap } from './webmap.js';
 import * as mapWidgets from './mapControls.js';
 import * as mapOverlays from './overlays.js';
 import { trails } from './hikingTrails.js';
+import { esriKey } from './apiKey.js'
 
 // api key
-esriConfig.apiKey = 'AAPK56c13fae1a6d4407a5d392981b9b50d2kwxUZMYHbCl1MyifP-JufC7lrC9K2TvvL93oR25h20j0cjvoAro30x-p0O27jPwS';
+esriConfig.apiKey = esriKey;
 
 mapView.when(function() {
    webmap.addMany([mapOverlays.usgsContours, mapOverlays.atTrail, trails]);
